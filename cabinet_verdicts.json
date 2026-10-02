@@ -1,0 +1,969 @@
+{
+ "theta_tick": 0.0433128847297628,
+ "K": 4,
+ "T": 4,
+ "rows": [
+  {
+   "label": "artin_2.104.3t2.b.a",
+   "fam": "Artin",
+   "route": "model:clean",
+   "conv": 1.9655066003984405,
+   "pred": 1.9621608265047414,
+   "ci": [
+    1.8243383842575511,
+    2.0999832687519318
+   ],
+   "sigma_tick": 0.009371159088291135,
+   "quadrant": "reliable",
+   "action": "standard protocol; no verification needed",
+   "stale": [],
+   "wall_ms": 21.712299901992083
+  },
+  {
+   "label": "artin_2.107.3t2.a.a",
+   "fam": "Artin",
+   "route": "model:clean",
+   "conv": 1.6486845222144377,
+   "pred": 1.6558064202664622,
+   "ci": [
+    1.512942157264815,
+    1.7986706832681094
+   ],
+   "sigma_tick": 0.018660526648262676,
+   "quadrant": "reliable",
+   "action": "standard protocol; no verification needed",
+   "stale": [],
+   "wall_ms": 20.852799993008375
+  },
+  {
+   "label": "artin_2.108.3t2.b.a",
+   "fam": "Artin",
+   "route": "model:clean",
+   "conv": 1.5431498005023336,
+   "pred": 1.5786599150628462,
+   "ci": [
+    1.4095909187387872,
+    1.7477289113869052
+   ],
+   "sigma_tick": 0.04162710799199605,
+   "quadrant": "reliable",
+   "action": "standard protocol; no verification needed",
+   "stale": [],
+   "wall_ms": 20.67010011523962
+  },
+  {
+   "label": "artin_2.116.3t2.a.a",
+   "fam": "Artin",
+   "route": "model:clean",
+   "conv": 1.8106330672081152,
+   "pred": 1.810297953242332,
+   "ci": [
+    1.6707488233239853,
+    1.9498470831606787
+   ],
+   "sigma_tick": 0.012002504426833607,
+   "quadrant": "reliable",
+   "action": "standard protocol; no verification needed",
+   "stale": [],
+   "wall_ms": 20.40650020353496
+  },
+  {
+   "label": "artin_2.135.3t2.b.a",
+   "fam": "Artin",
+   "route": "model:clean",
+   "conv": 1.696639812936726,
+   "pred": 1.6957716857323468,
+   "ci": [
+    1.559327722624266,
+    1.8322156488404275
+   ],
+   "sigma_tick": 0.00507856791336789,
+   "quadrant": "reliable",
+   "action": "standard protocol; no verification needed",
+   "stale": [],
+   "wall_ms": 20.39259998127818
+  },
+  {
+   "label": "artin_2.139.3t2.a.a",
+   "fam": "Artin",
+   "route": "model:clean",
+   "conv": 1.8622471671676406,
+   "pred": 1.8467399307943535,
+   "ci": [
+    1.7064469448690958,
+    1.9870329167196112
+   ],
+   "sigma_tick": 0.015315954867634816,
+   "quadrant": "reliable",
+   "action": "standard protocol; no verification needed",
+   "stale": [],
+   "wall_ms": 20.327999955043197
+  },
+  {
+   "label": "artin_2.140.3t2.a.a",
+   "fam": "Artin",
+   "route": "model:clean",
+   "conv": 1.877701935373544,
+   "pred": 1.8948411425143519,
+   "ci": [
+    1.7487879177806047,
+    2.0408943672480993
+   ],
+   "sigma_tick": 0.02287599074045223,
+   "quadrant": "reliable",
+   "action": "standard protocol; no verification needed",
+   "stale": [],
+   "wall_ms": 20.945000229403377
+  },
+  {
+   "label": "artin_2.148.3t2.a.a",
+   "fam": "Artin",
+   "route": "model:clean",
+   "conv": 1.7688154116817079,
+   "pred": 1.769652872572765,
+   "ci": [
+    1.6328279839301536,
+    1.9064777612153763
+   ],
+   "sigma_tick": 0.0068339584637855805,
+   "quadrant": "reliable",
+   "action": "standard protocol; no verification needed",
+   "stale": [],
+   "wall_ms": 20.88859979994595
+  },
+  {
+   "label": "artin_2.152.3t2.b.a",
+   "fam": "Artin",
+   "route": "model:clean",
+   "conv": 1.6982128386691748,
+   "pred": 1.6908910565679323,
+   "ci": [
+    1.551640679014252,
+    1.8301414341216125
+   ],
+   "sigma_tick": 0.012029149397414772,
+   "quadrant": "reliable",
+   "action": "standard protocol; no verification needed",
+   "stale": [],
+   "wall_ms": 20.587800070643425
+  },
+  {
+   "label": "artin_2.172.3t2.a.a",
+   "fam": "Artin",
+   "route": "model:clean",
+   "conv": 2.250220825505345,
+   "pred": 2.26020412677446,
+   "ci": [
+    2.1093853462349146,
+    2.4110229073140057
+   ],
+   "sigma_tick": 0.02775136510619751,
+   "quadrant": "reliable",
+   "action": "standard protocol; no verification needed",
+   "stale": [],
+   "wall_ms": 20.537399919703603
+  },
+  {
+   "label": "artin_2.175.3t2.b.a",
+   "fam": "Artin",
+   "route": "model:clean",
+   "conv": 1.6590586334206368,
+   "pred": 1.66502815450667,
+   "ci": [
+    1.5257531125712482,
+    1.804303196442092
+   ],
+   "sigma_tick": 0.013904280236986803,
+   "quadrant": "reliable",
+   "action": "standard protocol; no verification needed",
+   "stale": [],
+   "wall_ms": 20.41199989616871
+  },
+  {
+   "label": "artin_2.199.3t2.a.a",
+   "fam": "Artin",
+   "route": "model:clean",
+   "conv": 1.6483381584766843,
+   "pred": 1.6572623947270766,
+   "ci": [
+    1.5105952222336918,
+    1.8039295672204614
+   ],
+   "sigma_tick": 0.02319364182403725,
+   "quadrant": "reliable",
+   "action": "standard protocol; no verification needed",
+   "stale": [],
+   "wall_ms": 20.39119997061789
+  },
+  {
+   "label": "artin_2.200.3t2.b.a",
+   "fam": "Artin",
+   "route": "model:clean",
+   "conv": 1.991943283967523,
+   "pred": 1.9915402572761332,
+   "ci": [
+    1.8525342306203443,
+    2.130546283931922
+   ],
+   "sigma_tick": 0.01536019889168504,
+   "quadrant": "reliable",
+   "action": "standard protocol; no verification needed",
+   "stale": [],
+   "wall_ms": 20.672000013291836
+  },
+  {
+   "label": "artin_2.204.3t2.a.a",
+   "fam": "Artin",
+   "route": "model:clean",
+   "conv": 1.748974583688177,
+   "pred": 1.7466752309198834,
+   "ci": [
+    1.6105759757625036,
+    1.8827744860772633
+   ],
+   "sigma_tick": 0.00506835205418428,
+   "quadrant": "reliable",
+   "action": "standard protocol; no verification needed",
+   "stale": [
+    2
+   ],
+   "wall_ms": 98.64519978873432
+  },
+  {
+   "label": "artin_2.211.3t2.a.a",
+   "fam": "Artin",
+   "route": "model:clean",
+   "conv": 1.8122835396293364,
+   "pred": 1.8100450725406747,
+   "ci": [
+    1.6717432492181885,
+    1.948346895863161
+   ],
+   "sigma_tick": 0.011389559301873785,
+   "quadrant": "reliable",
+   "action": "standard protocol; no verification needed",
+   "stale": [],
+   "wall_ms": 43.37109997868538
+  },
+  {
+   "label": "artin_2.212.3t2.a.a",
+   "fam": "Artin",
+   "route": "model:clean",
+   "conv": 1.7478212379511011,
+   "pred": 1.7494097282842387,
+   "ci": [
+    1.6129764273477785,
+    1.885843029220699
+   ],
+   "sigma_tick": 0.006122049366113442,
+   "quadrant": "reliable",
+   "action": "standard protocol; no verification needed",
+   "stale": [],
+   "wall_ms": 20.495299948379397
+  },
+  {
+   "label": "artin_2.216.3t2.b.a",
+   "fam": "Artin",
+   "route": "model:clean",
+   "conv": 1.99296063221778,
+   "pred": 1.9854631236122695,
+   "ci": [
+    1.8478803644278408,
+    2.1230458827966983
+   ],
+   "sigma_tick": 0.009168896993390123,
+   "quadrant": "reliable",
+   "action": "standard protocol; no verification needed",
+   "stale": [],
+   "wall_ms": 20.386100048199296
+  },
+  {
+   "label": "artin_2.229.3t2.a.a",
+   "fam": "Artin",
+   "route": "model:clean",
+   "conv": 2.015079507709244,
+   "pred": 2.012503823303856,
+   "ci": [
+    1.869244621671748,
+    2.155763024935964
+   ],
+   "sigma_tick": 0.017801922264529573,
+   "quadrant": "reliable",
+   "action": "standard protocol; no verification needed",
+   "stale": [],
+   "wall_ms": 20.787699846550822
+  },
+  {
+   "label": "artin_2.231.3t2.a.a",
+   "fam": "Artin",
+   "route": "model:clean",
+   "conv": 2.1528875785620714,
+   "pred": 2.165791724241173,
+   "ci": [
+    2.004456502656115,
+    2.3271269458262305
+   ],
+   "sigma_tick": 0.03117874911613966,
+   "quadrant": "reliable",
+   "action": "standard protocol; no verification needed",
+   "stale": [],
+   "wall_ms": 20.676199812442064
+  },
+  {
+   "label": "artin_2.239.3t2.a.a",
+   "fam": "Artin",
+   "route": "model:clean",
+   "conv": 1.7950010531225638,
+   "pred": 1.7902164816579544,
+   "ci": [
+    1.6514407058259482,
+    1.9289922574899607
+   ],
+   "sigma_tick": 0.01144257908042683,
+   "quadrant": "reliable",
+   "action": "standard protocol; no verification needed",
+   "stale": [],
+   "wall_ms": 20.351399900391698
+  },
+  {
+   "label": "artin_2.243.3t2.b.a",
+   "fam": "Artin",
+   "route": "model:clean",
+   "conv": 1.7517594687989908,
+   "pred": 1.7484720746408418,
+   "ci": [
+    1.610078534567955,
+    1.8868656147137286
+   ],
+   "sigma_tick": 0.013265564005842702,
+   "quadrant": "reliable",
+   "action": "standard protocol; no verification needed",
+   "stale": [],
+   "wall_ms": 20.360999973490834
+  },
+  {
+   "label": "artin_2.244.3t2.a.a",
+   "fam": "Artin",
+   "route": "model:clean",
+   "conv": 2.158311753637775,
+   "pred": 2.158482430814443,
+   "ci": [
+    2.015114798397112,
+    2.301850063231774
+   ],
+   "sigma_tick": 0.021886945931563942,
+   "quadrant": "reliable",
+   "action": "standard protocol; no verification needed",
+   "stale": [],
+   "wall_ms": 21.253899903967977
+  },
+  {
+   "label": "artin_2.247.3t2.a.a",
+   "fam": "Artin",
+   "route": "model:clean",
+   "conv": 2.025565415278326,
+   "pred": 2.032665494063163,
+   "ci": [
+    1.8929789175435354,
+    2.1723520705827903
+   ],
+   "sigma_tick": 0.010648652473870493,
+   "quadrant": "reliable",
+   "action": "standard protocol; no verification needed",
+   "stale": [],
+   "wall_ms": 21.237700013443828
+  },
+  {
+   "label": "artin_2.255.3t2.a.a",
+   "fam": "Artin",
+   "route": "model:clean",
+   "conv": 1.9481822587292754,
+   "pred": 1.9515764175940715,
+   "ci": [
+    1.802519946031537,
+    2.100632889156606
+   ],
+   "sigma_tick": 0.014925101626012877,
+   "quadrant": "reliable",
+   "action": "standard protocol; no verification needed",
+   "stale": [],
+   "wall_ms": 20.28169995173812
+  },
+  {
+   "label": "artin_2.257.3t2.a.a",
+   "fam": "Artin",
+   "route": "rule:dimer",
+   "conv": 12.029269508962829,
+   "pred": 2.365305421279127,
+   "ci": [
+    2.1221412011969893,
+    2.6084696413612645
+   ],
+   "sigma_tick": 0.08229045024738153,
+   "quadrant": "overconfident",
+   "action": "downgrade confidence; short ODE check (s_max=0.5)",
+   "stale": [],
+   "wall_ms": 20.468899980187416
+  },
+  {
+   "label": "artin_2.268.3t2.a.a",
+   "fam": "Artin",
+   "route": "model:clean",
+   "conv": 1.7910948612235114,
+   "pred": 1.7719583838445518,
+   "ci": [
+    1.6319517718722136,
+    1.91196499581689
+   ],
+   "sigma_tick": 0.015583444175441614,
+   "quadrant": "reliable",
+   "action": "standard protocol; no verification needed",
+   "stale": [],
+   "wall_ms": 20.356599939987063
+  },
+  {
+   "label": "artin_2.283.3t2.a.a",
+   "fam": "Artin",
+   "route": "model:clean",
+   "conv": 1.6963292679277047,
+   "pred": 1.692676114121453,
+   "ci": [
+    1.549459703341454,
+    1.835892524901452
+   ],
+   "sigma_tick": 0.018301836457623608,
+   "quadrant": "reliable",
+   "action": "standard protocol; no verification needed",
+   "stale": [],
+   "wall_ms": 20.64769994467497
+  },
+  {
+   "label": "artin_2.300.3t2.a.a",
+   "fam": "Artin",
+   "route": "model:clean",
+   "conv": 1.7525346033443243,
+   "pred": 1.7575861574657108,
+   "ci": [
+    1.6199155110747379,
+    1.8952568038566837
+   ],
+   "sigma_tick": 0.009319999767041178,
+   "quadrant": "reliable",
+   "action": "standard protocol; no verification needed",
+   "stale": [],
+   "wall_ms": 20.262799924239516
+  },
+  {
+   "label": "artin_2.307.3t2.a.a",
+   "fam": "Artin",
+   "route": "model:clean",
+   "conv": 1.7257204674753657,
+   "pred": 1.725393613514682,
+   "ci": [
+    1.5886241595525186,
+    1.8621630674768452
+   ],
+   "sigma_tick": 0.008552231771624414,
+   "quadrant": "reliable",
+   "action": "standard protocol; no verification needed",
+   "stale": [],
+   "wall_ms": 20.312000066041946
+  },
+  {
+   "label": "artin_2.316.3t2.a.a",
+   "fam": "Artin",
+   "route": "model:clean",
+   "conv": 2.0013437769013307,
+   "pred": 2.002183709161258,
+   "ci": [
+    1.8590043964286287,
+    2.1453630218938877
+   ],
+   "sigma_tick": 0.015865457799264245,
+   "quadrant": "reliable",
+   "action": "standard protocol; no verification needed",
+   "stale": [],
+   "wall_ms": 20.531800109893084
+  },
+  {
+   "label": "100a1",
+   "fam": "GL(3)",
+   "route": "model:clean",
+   "conv": 1.7511697551001064,
+   "pred": 1.7499722755433833,
+   "ci": [
+    1.6138258540802013,
+    1.8861186970065653
+   ],
+   "sigma_tick": 0.005457496308233846,
+   "quadrant": "reliable",
+   "action": "standard protocol; no verification needed",
+   "stale": [],
+   "wall_ms": 20.32930008135736
+  },
+  {
+   "label": "104a1",
+   "fam": "GL(3)",
+   "route": "model:clean",
+   "conv": 1.865159642690095,
+   "pred": 1.8673144437331188,
+   "ci": [
+    1.7269385428610886,
+    2.007690344605149
+   ],
+   "sigma_tick": 0.01471465052038868,
+   "quadrant": "reliable",
+   "action": "standard protocol; no verification needed",
+   "stale": [],
+   "wall_ms": 20.46819985844195
+  },
+  {
+   "label": "112a1",
+   "fam": "GL(3)",
+   "route": "model:clean",
+   "conv": 1.9006081309199525,
+   "pred": 1.9135696712686947,
+   "ci": [
+    1.7712379264746705,
+    2.055901416062719
+   ],
+   "sigma_tick": 0.021937427352399907,
+   "quadrant": "reliable",
+   "action": "standard protocol; no verification needed",
+   "stale": [],
+   "wall_ms": 20.436400081962347
+  },
+  {
+   "label": "116a1",
+   "fam": "GL(3)",
+   "route": "model:clean",
+   "conv": 2.5631417672221826,
+   "pred": 2.4744551552417082,
+   "ci": [
+    2.1885401470404147,
+    2.760370163443002
+   ],
+   "sigma_tick": 0.09384954339194553,
+   "quadrant": "overconfident",
+   "action": "downgrade confidence; short ODE check (s_max=0.5)",
+   "stale": [],
+   "wall_ms": 20.67600004374981
+  },
+  {
+   "label": "117a1",
+   "fam": "GL(3)",
+   "route": "model:clean",
+   "conv": 1.9344419492233291,
+   "pred": 1.9357590570841554,
+   "ci": [
+    1.7944471221750604,
+    2.07707099199325
+   ],
+   "sigma_tick": 0.017207145828398645,
+   "quadrant": "reliable",
+   "action": "standard protocol; no verification needed",
+   "stale": [],
+   "wall_ms": 21.85929985716939
+  },
+  {
+   "label": "11a1",
+   "fam": "GL(3)",
+   "route": "model:clean",
+   "conv": 1.842672544020983,
+   "pred": 1.844826982339748,
+   "ci": [
+    1.7058437027372768,
+    1.9838102619422193
+   ],
+   "sigma_tick": 0.010513562291322255,
+   "quadrant": "reliable",
+   "action": "standard protocol; no verification needed",
+   "stale": [],
+   "wall_ms": 20.624599885195494
+  },
+  {
+   "label": "120a1",
+   "fam": "GL(3)",
+   "route": "model:clean",
+   "conv": 1.9691010518683316,
+   "pred": 1.968830204763772,
+   "ci": [
+    1.8251241138551224,
+    2.1125362956724216
+   ],
+   "sigma_tick": 0.01784349329409321,
+   "quadrant": "reliable",
+   "action": "standard protocol; no verification needed",
+   "stale": [],
+   "wall_ms": 20.397899905219674
+  },
+  {
+   "label": "14a1",
+   "fam": "GL(3)",
+   "route": "model:clean",
+   "conv": 1.9034682386087363,
+   "pred": 1.9047608392678863,
+   "ci": [
+    1.764341481412901,
+    2.0451801971228716
+   ],
+   "sigma_tick": 0.012092378159472575,
+   "quadrant": "reliable",
+   "action": "standard protocol; no verification needed",
+   "stale": [],
+   "wall_ms": 20.35140013322234
+  },
+  {
+   "label": "15a1",
+   "fam": "GL(3)",
+   "route": "model:clean",
+   "conv": 1.8467444427884954,
+   "pred": 1.847490809918058,
+   "ci": [
+    1.7032361079936864,
+    1.9917455118424297
+   ],
+   "sigma_tick": 0.019701231396879636,
+   "quadrant": "reliable",
+   "action": "standard protocol; no verification needed",
+   "stale": [],
+   "wall_ms": 20.304200006648898
+  },
+  {
+   "label": "17a1",
+   "fam": "GL(3)",
+   "route": "model:clean",
+   "conv": 1.7144955032069653,
+   "pred": 1.7236039783215182,
+   "ci": [
+    1.5852256885715876,
+    1.8619822680714488
+   ],
+   "sigma_tick": 0.010528573421311306,
+   "quadrant": "reliable",
+   "action": "standard protocol; no verification needed",
+   "stale": [],
+   "wall_ms": 20.38839994929731
+  },
+  {
+   "label": "19a1",
+   "fam": "GL(3)",
+   "route": "model:clean",
+   "conv": 1.9547646936269352,
+   "pred": 1.9556865864846256,
+   "ci": [
+    1.8191300565275823,
+    2.092243116441669
+   ],
+   "sigma_tick": 0.006013504996716863,
+   "quadrant": "reliable",
+   "action": "standard protocol; no verification needed",
+   "stale": [],
+   "wall_ms": 20.784699823707342
+  },
+  {
+   "label": "21a1",
+   "fam": "GL(3)",
+   "route": "model:clean",
+   "conv": 1.8905584943846647,
+   "pred": 1.884404812854495,
+   "ci": [
+    1.747108535284528,
+    2.0217010904244623
+   ],
+   "sigma_tick": 0.007816785568767765,
+   "quadrant": "reliable",
+   "action": "standard protocol; no verification needed",
+   "stale": [],
+   "wall_ms": 20.34990000538528
+  },
+  {
+   "label": "24a1",
+   "fam": "GL(3)",
+   "route": "model:clean",
+   "conv": 2.122072207939612,
+   "pred": 2.1478840299698363,
+   "ci": [
+    1.9408333135134046,
+    2.354934746426268
+   ],
+   "sigma_tick": 0.07271503733091748,
+   "quadrant": "overconfident",
+   "action": "downgrade confidence; short ODE check (s_max=0.5)",
+   "stale": [],
+   "wall_ms": 20.33179998397827
+  },
+  {
+   "label": "26a1",
+   "fam": "GL(3)",
+   "route": "model:clean",
+   "conv": 1.663368611678347,
+   "pred": 1.6626870304617407,
+   "ci": [
+    1.525712283969073,
+    1.7996617769544083
+   ],
+   "sigma_tick": 0.007940940911439659,
+   "quadrant": "reliable",
+   "action": "standard protocol; no verification needed",
+   "stale": [],
+   "wall_ms": 20.40160004980862
+  },
+  {
+   "label": "27a1",
+   "fam": "GL(3)",
+   "route": "rule:dimer",
+   "conv": 27.443519636602954,
+   "pred": 2.375834443505032,
+   "ci": [
+    2.1349308060479606,
+    2.6167380809621035
+   ],
+   "sigma_tick": 0.07150913493197374,
+   "quadrant": "overconfident",
+   "action": "downgrade confidence; short ODE check (s_max=0.5)",
+   "stale": [],
+   "wall_ms": 20.356500055640936
+  },
+  {
+   "label": "32a1",
+   "fam": "GL(3)",
+   "route": "model:suspect(0.02-0.05)",
+   "conv": 8.397516873699207,
+   "pred": 2.353940397221233,
+   "ci": [
+    2.1398307731071946,
+    2.5680500213352713
+   ],
+   "sigma_tick": 0.060247116779278354,
+   "quadrant": "overconfident",
+   "action": "downgrade confidence; short ODE check (s_max=0.5)",
+   "stale": [],
+   "wall_ms": 20.970999961718917
+  },
+  {
+   "label": "33a1",
+   "fam": "GL(3)",
+   "route": "model:clean",
+   "conv": 2.304960657660761,
+   "pred": 2.3186609083580043,
+   "ci": [
+    2.1310205588005835,
+    2.506301257915425
+   ],
+   "sigma_tick": 0.04837021494306306,
+   "quadrant": "overconfident",
+   "action": "downgrade confidence; short ODE check (s_max=0.5)",
+   "stale": [],
+   "wall_ms": 20.8640000782907
+  },
+  {
+   "label": "34a1",
+   "fam": "GL(3)",
+   "route": "model:clean",
+   "conv": 1.7549900773425882,
+   "pred": 1.7551929891166231,
+   "ci": [
+    1.6193678900581692,
+    1.891018088175077
+   ],
+   "sigma_tick": 0.003999735323484223,
+   "quadrant": "reliable",
+   "action": "standard protocol; no verification needed",
+   "stale": [],
+   "wall_ms": 21.17229998111725
+  },
+  {
+   "label": "35a1",
+   "fam": "GL(3)",
+   "route": "model:clean",
+   "conv": 2.069423108748521,
+   "pred": 2.0904073791308573,
+   "ci": [
+    1.9322375294085297,
+    2.248577228853185
+   ],
+   "sigma_tick": 0.03607069846229008,
+   "quadrant": "reliable",
+   "action": "standard protocol; no verification needed",
+   "stale": [],
+   "wall_ms": 20.58260003104806
+  },
+  {
+   "label": "37a1",
+   "fam": "GL(3)",
+   "route": "model:clean",
+   "conv": 1.823388409316781,
+   "pred": 1.8336408357085907,
+   "ci": [
+    1.694298360847198,
+    1.9729833105699834
+   ],
+   "sigma_tick": 0.012866160081787483,
+   "quadrant": "reliable",
+   "action": "standard protocol; no verification needed",
+   "stale": [],
+   "wall_ms": 20.44459991157055
+  },
+  {
+   "label": "37b1",
+   "fam": "GL(3)",
+   "route": "model:clean",
+   "conv": 1.7722725794983534,
+   "pred": 1.7711568779596911,
+   "ci": [
+    1.6322809652230943,
+    1.910032790696288
+   ],
+   "sigma_tick": 0.013256500292968258,
+   "quadrant": "reliable",
+   "action": "standard protocol; no verification needed",
+   "stale": [],
+   "wall_ms": 20.53670003078878
+  },
+  {
+   "label": "38a1",
+   "fam": "GL(3)",
+   "route": "model:clean",
+   "conv": 1.7581534050547847,
+   "pred": 1.7624152309804761,
+   "ci": [
+    1.6238029706891037,
+    1.9010274912718486
+   ],
+   "sigma_tick": 0.011414450523660798,
+   "quadrant": "reliable",
+   "action": "standard protocol; no verification needed",
+   "stale": [],
+   "wall_ms": 20.43420006521046
+  },
+  {
+   "label": "42a1",
+   "fam": "GL(3)",
+   "route": "model:clean",
+   "conv": 2.370231536887554,
+   "pred": 2.366166051809638,
+   "ci": [
+    2.1998078473448093,
+    2.532524256274467
+   ],
+   "sigma_tick": 0.03304978994308554,
+   "quadrant": "reliable",
+   "action": "standard protocol; no verification needed",
+   "stale": [],
+   "wall_ms": 20.430600037798285
+  },
+  {
+   "label": "43a1",
+   "fam": "GL(3)",
+   "route": "model:clean",
+   "conv": 1.7002491445327106,
+   "pred": 1.7162280760285586,
+   "ci": [
+    1.57635410885961,
+    1.8561020431975073
+   ],
+   "sigma_tick": 0.014796197902679394,
+   "quadrant": "reliable",
+   "action": "standard protocol; no verification needed",
+   "stale": [],
+   "wall_ms": 20.4092999920249
+  },
+  {
+   "label": "44a1",
+   "fam": "GL(3)",
+   "route": "model:clean",
+   "conv": 1.7679998462618278,
+   "pred": 1.768637337747014,
+   "ci": [
+    1.6321387042284792,
+    1.9051359712655487
+   ],
+   "sigma_tick": 0.0067184668198032975,
+   "quadrant": "reliable",
+   "action": "standard protocol; no verification needed",
+   "stale": [],
+   "wall_ms": 20.3038000036031
+  },
+  {
+   "label": "46a1",
+   "fam": "GL(3)",
+   "route": "model:clean",
+   "conv": 2.1530737010385397,
+   "pred": 2.174178166842625,
+   "ci": [
+    2.0263410892292457,
+    2.3220152444560043
+   ],
+   "sigma_tick": 0.022700906596355156,
+   "quadrant": "reliable",
+   "action": "standard protocol; no verification needed",
+   "stale": [],
+   "wall_ms": 20.565700018778443
+  },
+  {
+   "label": "49a1",
+   "fam": "GL(3)",
+   "route": "rule:dimer",
+   "conv": 290.5946335720188,
+   "pred": 2.369912538366549,
+   "ci": [
+    2.1494914827236835,
+    2.5903335940094143
+   ],
+   "sigma_tick": 0.05629216677290004,
+   "quadrant": "overconfident",
+   "action": "downgrade confidence; short ODE check (s_max=0.5)",
+   "stale": [],
+   "wall_ms": 20.626400131732225
+  },
+  {
+   "label": "50a1",
+   "fam": "GL(3)",
+   "route": "model:clean",
+   "conv": 1.6854747911008503,
+   "pred": 1.6820117506256644,
+   "ci": [
+    1.5357841726017274,
+    1.8282393286496015
+   ],
+   "sigma_tick": 0.01769317484361154,
+   "quadrant": "reliable",
+   "action": "standard protocol; no verification needed",
+   "stale": [],
+   "wall_ms": 20.29909985139966
+  },
+  {
+   "label": "51a1",
+   "fam": "GL(3)",
+   "route": "model:clean",
+   "conv": 1.8753094788427638,
+   "pred": 1.87602225620632,
+   "ci": [
+    1.7397750135559917,
+    2.0122694988566483
+   ],
+   "sigma_tick": 0.004520784795241928,
+   "quadrant": "reliable",
+   "action": "standard protocol; no verification needed",
+   "stale": [],
+   "wall_ms": 20.871399901807308
+  },
+  {
+   "label": "52a1",
+   "fam": "GL(3)",
+   "route": "model:clean",
+   "conv": 1.7550081803450635,
+   "pred": 1.758408254513098,
+   "ci": [
+    1.620602967769772,
+    1.8962135412564238
+   ],
+   "sigma_tick": 0.011080955561126513,
+   "quadrant": "reliable",
+   "action": "standard protocol; no verification needed",
+   "stale": [],
+   "wall_ms": 20.818500081077218
+  }
+ ]
+}
