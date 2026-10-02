@@ -28,9 +28,10 @@ if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(line_buffering=True)
 
 CACHE = Path(__file__).resolve().parent.parent.parent
+REPO = Path(__file__).resolve().parent.parent
 CONV_CACHE = CACHE / "conv_cache_s2.json"
 EXTRA_TRAIN = CACHE / "ml_train_extra.json"
-VERDICTS = CACHE / "ml_verdicts.json"
+VERDICTS = REPO / "ml_verdicts.json"
 DIMER_GAP = 0.02
 CLEAN_GAP = 0.05
 
@@ -86,8 +87,8 @@ def rigid_surrogate(N, s, rng):
 def rule_gate(f):
     mg = np.exp(f["log_mingap"])
     if mg < DIMER_GAP:
-        return (f"ДИМЕР (min gap={mg:.4f} < {DIMER_GAP}): исключить окно из "
-                f"статистик; в ловушке — локальное охлаждение пары. ОДУ не нужен.")
+        return (f"DIMER (min gap={mg:.4f} < {DIMER_GAP}): exclude window from "
+                f"statistics; in trap: local cooling of the pair. No ODE needed.")
     return None
 
 def build_dataset():
