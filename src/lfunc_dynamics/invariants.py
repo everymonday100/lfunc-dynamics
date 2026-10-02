@@ -1,9 +1,9 @@
 import numpy as np
-from .flow import forces, coulomb_energy, integrate_dysion
+from .flow import forces, coulomb_energy, integrate_dyson
 
 def compute_tau_H(w, s_max=2.0):
     """Энергетическое полувремя релаксации на стандартном горизонте."""
-    t, y = integrate_dysion(w, s_max=s_max)
+    t, y = integrate_dyson(w, s_max=s_max)
     H = np.array([coulomb_energy(y[:, i]) for i in range(len(t))])
     
     H0, H_final = H[0], H[-1]
@@ -13,15 +13,15 @@ def compute_tau_H(w, s_max=2.0):
         return float(np.interp(H_half, H[::-1], t[::-1]))
     return np.nan
 
-def compute_conv(w):
+def compute_conv(w, s_max=2.0):
     """Выпуклость диссипации (Dissipation Convexity)."""
     P0 = 0.5 * np.sum(forces(w) ** 2)
-    t, y = integrate_dysion(w, s_max=2.0) # Используем стандартный горизонт
+    t, y = integrate_dyson(w, s_max=s_max)
     H0 = coulomb_energy(y[:, 0])
     H_final = coulomb_energy(y[:, -1])
     drop = H0 - H_final
     if drop > 1e-9:
-        return 2 * P0 / drop
+        return float(2 * P0 / drop)
     return np.nan
 
 def compute_r2(w):

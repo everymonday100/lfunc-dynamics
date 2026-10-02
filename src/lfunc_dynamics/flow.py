@@ -12,11 +12,8 @@ def coulomb_energy(y):
     i, j = np.triu_indices(len(y), k=1)
     return -np.sum(np.log(np.abs(y[i] - y[j])))
 
-def integrate_dysion(w, s_max=2.0, n_steps=100):
-    """
-    Интегрирует поток Дайсона dx/ds = forces(x).
-    Возвращает массив времен и массив конфигураций.
-    """
+def integrate_dyson(w, s_max=2.0, n_steps=100):
+    """Интегрирует поток Дайсона dx/ds = forces(x)."""
     t_eval = np.linspace(0.0, s_max, n_steps)
     sol = solve_ivp(
         lambda t, y: forces(y), 
