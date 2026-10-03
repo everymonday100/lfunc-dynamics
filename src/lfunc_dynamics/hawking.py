@@ -1,6 +1,6 @@
 r"""
-hawking.py (v6) — синтетические шоты аналоговой ЧД с инвариантами Боголюбова/KMS.
-Добавлено: поиск r_opt, отклонение от нормы Боголюбова, дисперсия KMS-отношения.
+hawking.py (v6.1) — синтетические шоты аналоговой ЧД с инвариантами Боголюбова/KMS.
+Исправлено: shot() принимает опциональный n_pairs_override.
 """
 import numpy as np
 
@@ -10,7 +10,6 @@ class HawkingRig:
         self.nx, self.L = nx, L
         self.x = np.linspace(-L, L, nx)
         self.k_out = k_out
-        # Сетка для поиска дисперсионного соотношения партнёра
         self.r_grid = np.linspace(1.0, 2.2, 7)
         self.T_H = T_H
         self.T_th = T_th
@@ -46,10 +45,10 @@ class HawkingRig:
         mband = (ks > 10.0) & (ks < 120.0)
         p = self.n_H[1:] * mband
         p = p / p.sum() if p.sum() > 0 else np.ones_like(p) / len(p)
+        r_true = 1.6
         for _ in range(n_pairs):
             ke = float(rng.choice(ks, p=p))
             th = rng.uniform(0, 2 * np.pi)
-            r_true = 1.6
             phi += (self.w_out * np.cos(ke * (self.x - self.x0) + th)
                     + self.sigma * self.w_in
                     * np.cos(r_true * ke * (self.x + self.x0) + th))
@@ -58,7 +57,6 @@ class HawkingRig:
 
     def features(self, phi):
         sp = np.fft.rfft(phi)
-        # 1. Поиск оптимального r (дисперсионное соотношение партнёра)
         best_mj, r_opt = 0.0, self.r_grid[0]
         for r in self.r_grid:
             mj_r = 0.0
@@ -72,7 +70,6 @@ class HawkingRig:
             if mj_r > best_mj:
                 best_mj, r_opt = mj_r, r
 
-        # 2. Инварианты Боголюбова и KMS на оптимальном r
         K_bins = np.linspace(0.6 * self.k_out, 1.3 * self.k_out, 12)
         bog_ratios, kms_ratios = [], []
         m_j_total, m_out_total, m_in_total = 0.0, 0.0, 0.0
@@ -91,15 +88,11 @@ class HawkingRig:
             m_j_total = max(m_j_total, mj)
             m_out_total = max(m_out_total, mo)
             m_in_total = max(m_in_total, mi)
-            # Боголюбов: m_j^2 ~ m_out * m_in + 1 (для сжатого состояния)
             bog_ratios.append(mj ** 2 / (mo * mi + 1e-9))
-            # KMS: m_out / m_in ~ exp(omega/T_H)
             kms_ratios.append(mo / (mi + 1e-9))
 
         R = m_j_total ** 2 / (m_out_total ** 2 + m_in_total ** 2 + 1e-9)
-        # Дисперсия отклонения от кривой Боголюбова (низкая для квантового сигнала)
         bog_dev = float(np.std(bog_ratios))
-        # Дисперсия KMS-отношения (низкая для термального спектра)
         kms_var = float(np.var(kms_ratios))
 
         return dict(E_out=m_out_total ** 2, E_in=m_in_total ** 2,

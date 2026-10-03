@@ -1,0 +1,3207 @@
+{
+ "theta_tick": 0.5364015849741377,
+ "rows": [
+  {
+   "cls": "quantum",
+   "truth": 3.0,
+   "pred": 3.620757812304925,
+   "sigma_tick": 0.37166498892337224,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 3.0,
+   "pred": 2.672283123100753,
+   "sigma_tick": 0.45393587868982566,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 4.0,
+   "pred": 3.731627700755616,
+   "sigma_tick": 0.26863804610667263,
+   "quadrant": "reliable",
+   "weight": 1.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 3.0,
+   "pred": 2.8906914648895308,
+   "sigma_tick": 0.18720474042156676,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 1.3456613774039783,
+   "sigma_tick": 0.19611656011468756,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 1.1189166535642758,
+   "sigma_tick": 0.16551162785408496,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 3.0,
+   "pred": 2.3134577259231928,
+   "sigma_tick": 0.5107213020638761,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 0.39056834464772294,
+   "sigma_tick": 0.26342062387870485,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 1.5170697450453994,
+   "sigma_tick": 0.39072154100817125,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 1.1165741146165953,
+   "sigma_tick": 0.16072410956730354,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 2.0,
+   "pred": 2.252822498421127,
+   "sigma_tick": 0.3608114936337967,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 2.4043668788996815,
+   "sigma_tick": 0.6302364724469982,
+   "quadrant": "honest_low",
+   "weight": 2.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 2.0,
+   "pred": 0.5582276276663604,
+   "sigma_tick": 0.3747581686748664,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 2.0,
+   "pred": 1.369982695304835,
+   "sigma_tick": 0.2562086464176681,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 1.013005297395085,
+   "sigma_tick": 0.06628068559597294,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 3.0,
+   "pred": 2.8982550148258333,
+   "sigma_tick": 0.22727538425171925,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 2.0,
+   "pred": 1.7066350532105004,
+   "sigma_tick": 0.2616028641469617,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 1.1244841089310404,
+   "sigma_tick": 0.14022104817637326,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 1.5766363533832017,
+   "sigma_tick": 0.3084506744205523,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 4.0,
+   "pred": 3.893947627896752,
+   "sigma_tick": 0.20150668339735112,
+   "quadrant": "reliable",
+   "weight": 1.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 1.076291590121728,
+   "sigma_tick": 0.12823165057345223,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 0.7918301526435931,
+   "sigma_tick": 0.15336796881111123,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 4.0,
+   "pred": 4.150783720624816,
+   "sigma_tick": 0.1699474074370104,
+   "quadrant": "reliable",
+   "weight": 1.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 2.0,
+   "pred": 1.6567849264016827,
+   "sigma_tick": 0.2917166766943414,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 3.0,
+   "pred": 2.9584154515579257,
+   "sigma_tick": 0.281071827628291,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 2.0,
+   "pred": 3.412349356407324,
+   "sigma_tick": 0.5157016679832194,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 1.1675736362326383,
+   "sigma_tick": 0.1702628560910813,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 4.0,
+   "pred": 3.7663821632597685,
+   "sigma_tick": 0.23597321409863045,
+   "quadrant": "reliable",
+   "weight": 1.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 1.289458129141892,
+   "sigma_tick": 0.166215104045238,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 2.0,
+   "pred": 1.7367984387346311,
+   "sigma_tick": 0.35082324147986954,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 1.3267484602063484,
+   "sigma_tick": 0.1710657700838927,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 2.0,
+   "pred": 1.688196393591878,
+   "sigma_tick": 0.21334384901624553,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 4.0,
+   "pred": 3.706738176324439,
+   "sigma_tick": 0.3088846870755396,
+   "quadrant": "reliable",
+   "weight": 1.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 6.0,
+   "pred": 4.214306383335688,
+   "sigma_tick": 0.7087172281113754,
+   "quadrant": "honest_low",
+   "weight": 2.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 3.0,
+   "pred": 2.4250193300986917,
+   "sigma_tick": 0.249495429814734,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 2.0,
+   "pred": 2.5126487028531455,
+   "sigma_tick": 0.4122796583627012,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 3.0,
+   "pred": 1.3446501632874535,
+   "sigma_tick": 0.5479228470197395,
+   "quadrant": "honest_low",
+   "weight": 2.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 2.0,
+   "pred": 2.9478794080532356,
+   "sigma_tick": 0.408786809910506,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 1.0060972559356536,
+   "sigma_tick": 0.11450091388339778,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 2.0,
+   "pred": 1.3545176655023052,
+   "sigma_tick": 0.31560452312896353,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 1.7434565801889155,
+   "sigma_tick": 0.29816820207980915,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 5.0,
+   "pred": 3.7963632906497793,
+   "sigma_tick": 0.3700622149545262,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 3.0,
+   "pred": 3.038067296846021,
+   "sigma_tick": 0.18896565627464557,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 1.693890028042298,
+   "sigma_tick": 0.24922611514265922,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 1.2692789558072248,
+   "sigma_tick": 0.3250388932875061,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 3.0,
+   "pred": 3.1366285515167167,
+   "sigma_tick": 0.16505643581717916,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 1.251323416761486,
+   "sigma_tick": 0.38694193331362725,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 1.6983789880920965,
+   "sigma_tick": 0.5142395765290525,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 2.0,
+   "pred": 2.4445504250984396,
+   "sigma_tick": 0.3482628463850837,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 1.3468456311074457,
+   "sigma_tick": 0.3323595325711195,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 3.0,
+   "pred": 1.5735316940181527,
+   "sigma_tick": 0.5686970086186053,
+   "quadrant": "honest_low",
+   "weight": 2.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 3.0,
+   "pred": 3.5301844577702473,
+   "sigma_tick": 0.18936501068291925,
+   "quadrant": "reliable",
+   "weight": 1.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 1.1475476366511657,
+   "sigma_tick": 0.21085283530281995,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 1.0707350170552292,
+   "sigma_tick": 0.1681313840533061,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 1.1403475612231881,
+   "sigma_tick": 0.15198904210096553,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 4.0,
+   "pred": 4.150348718844128,
+   "sigma_tick": 0.16010833478780437,
+   "quadrant": "reliable",
+   "weight": 1.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 2.0,
+   "pred": 3.3345249138802564,
+   "sigma_tick": 0.41272194242884036,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 1.4117753987875752,
+   "sigma_tick": 0.2828076021818192,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 3.0,
+   "pred": 2.5953633849101587,
+   "sigma_tick": 0.35364187617005327,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 1.2454886596788322,
+   "sigma_tick": 0.22746932962985233,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 2.0,
+   "pred": 2.1718887106506832,
+   "sigma_tick": 0.1923171483305144,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 4.0,
+   "pred": 3.515807910790544,
+   "sigma_tick": 0.25375908438432415,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 1.1187599417963472,
+   "sigma_tick": 0.19025313773872907,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 2.0,
+   "pred": 2.1825826290132353,
+   "sigma_tick": 0.27756481820988177,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 1.0140327395907232,
+   "sigma_tick": 0.14022810747569145,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 1.3425435766464222,
+   "sigma_tick": 0.13559635046569557,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 2.0,
+   "pred": 1.900030467259939,
+   "sigma_tick": 0.22955712787104432,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 1.425539758056781,
+   "sigma_tick": 0.16833661185562188,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 1.6079862809192658,
+   "sigma_tick": 0.23020768326417768,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 4.0,
+   "pred": 2.967836447067902,
+   "sigma_tick": 0.40241234850606744,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 3.0,
+   "pred": 3.0288004160804904,
+   "sigma_tick": 0.1866422901151863,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 0.7332990299865398,
+   "sigma_tick": 0.2492947707291514,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 3.0,
+   "pred": 3.1033149886922713,
+   "sigma_tick": 0.384905281046426,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 3.0,
+   "pred": 3.672704666137708,
+   "sigma_tick": 0.36840912344626064,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 1.3847446023857306,
+   "sigma_tick": 0.3750865675775596,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 1.120687337594752,
+   "sigma_tick": 0.24277704084589202,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 4.0,
+   "pred": 3.6374930276673894,
+   "sigma_tick": 0.25636534882206574,
+   "quadrant": "reliable",
+   "weight": 1.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 1.1102876024669488,
+   "sigma_tick": 0.1620109301538314,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 4.0,
+   "pred": 3.888390972293844,
+   "sigma_tick": 0.23337170431481508,
+   "quadrant": "reliable",
+   "weight": 1.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 1.5497558595088883,
+   "sigma_tick": 0.3834391652063752,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 3.0,
+   "pred": 1.9393279484676962,
+   "sigma_tick": 0.5644496730568862,
+   "quadrant": "honest_low",
+   "weight": 2.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 2.156970116648469,
+   "sigma_tick": 0.5749328474224157,
+   "quadrant": "honest_low",
+   "weight": 2.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 1.8618822856641968,
+   "sigma_tick": 0.36534843631107583,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 4.0,
+   "pred": 2.559339891124288,
+   "sigma_tick": 0.6199125770822274,
+   "quadrant": "honest_low",
+   "weight": 2.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 2.126806342917762,
+   "sigma_tick": 0.5204869012538622,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 2.0,
+   "pred": 1.8588129108314249,
+   "sigma_tick": 0.13827054634456018,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 1.2609126091593232,
+   "sigma_tick": 0.13484493421740174,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 1.4079304188711765,
+   "sigma_tick": 0.19054549646091126,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 2.0,
+   "pred": 2.1342501362196185,
+   "sigma_tick": 0.29443561007145425,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 1.2846299705662123,
+   "sigma_tick": 0.2177479708660116,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 1.65941256296766,
+   "sigma_tick": 0.36665658898186265,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 4.0,
+   "pred": 2.0512110866676094,
+   "sigma_tick": 0.7735166846482218,
+   "quadrant": "honest_low",
+   "weight": 2.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 1.7298870296441127,
+   "sigma_tick": 0.42166816494810144,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 2.0,
+   "pred": 0.7715043152836907,
+   "sigma_tick": 0.4362073952243902,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 2.0,
+   "pred": 1.916547870613926,
+   "sigma_tick": 0.24111641994032612,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 5.0,
+   "pred": 4.063838597463927,
+   "sigma_tick": 0.3342424112288821,
+   "quadrant": "reliable",
+   "weight": 1.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 2.0034304503248794,
+   "sigma_tick": 0.630148346244894,
+   "quadrant": "honest_low",
+   "weight": 2.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 1.2780588560094028,
+   "sigma_tick": 0.3207490379087455,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 1.1439866308877202,
+   "sigma_tick": 0.22718086296940482,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 1.1167595707536715,
+   "sigma_tick": 0.19510636082239163,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 4.0,
+   "pred": 1.6175603746232092,
+   "sigma_tick": 0.7879262091521946,
+   "quadrant": "honest_low",
+   "weight": 2.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 3.0,
+   "pred": 2.817987181368358,
+   "sigma_tick": 0.2625505347026027,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 1.1298986662910915,
+   "sigma_tick": 0.11289966369981574,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 2.0,
+   "pred": 2.3267312649490774,
+   "sigma_tick": 0.23612610002155027,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 5.0,
+   "pred": 3.9719830198815975,
+   "sigma_tick": 0.543263066423988,
+   "quadrant": "honest_low",
+   "weight": 2.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 1.0624750972593122,
+   "sigma_tick": 0.07273594112716357,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 1.3756035611208348,
+   "sigma_tick": 0.20560762038587466,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 2.0,
+   "pred": 2.488202264462447,
+   "sigma_tick": 0.3608098333086158,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 3.0,
+   "pred": 1.802833218057073,
+   "sigma_tick": 0.4770003103015956,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 2.0,
+   "pred": 0.9278185295755172,
+   "sigma_tick": 0.4550973622284208,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 3.0,
+   "pred": 3.525215179152028,
+   "sigma_tick": 0.2485970435465527,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 3.0,
+   "pred": 2.778337128405578,
+   "sigma_tick": 0.1853515117317377,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 1.2916107863788815,
+   "sigma_tick": 0.1416345706743234,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 1.1844787199623514,
+   "sigma_tick": 0.1901086788346671,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 0.3660525938831436,
+   "sigma_tick": 0.21594243268644991,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 1.32064020696326,
+   "sigma_tick": 0.15065770430834693,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 2.0,
+   "pred": 1.9464754883256106,
+   "sigma_tick": 0.3372825553015811,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 2.0,
+   "pred": 1.1624563625989588,
+   "sigma_tick": 0.43024371417763085,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 1.4104649851816822,
+   "sigma_tick": 0.2829479710411565,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 4.0,
+   "pred": 3.623392553099228,
+   "sigma_tick": 0.3458491204680496,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 1.260237511034561,
+   "sigma_tick": 0.2529013203473895,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 2.226345439697769,
+   "sigma_tick": 0.41993600160406463,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 3.0,
+   "pred": 3.343996870520921,
+   "sigma_tick": 0.3454302493596266,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 2.0,
+   "pred": 1.9190219330984901,
+   "sigma_tick": 0.3625433572897806,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 4.0,
+   "pred": 3.1974347535424235,
+   "sigma_tick": 0.6796714570189478,
+   "quadrant": "honest_low",
+   "weight": 2.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 2.0,
+   "pred": 2.3885720537584314,
+   "sigma_tick": 0.2251848804063854,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 2.0,
+   "pred": 2.343312672174913,
+   "sigma_tick": 0.44843247704563455,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 3.0,
+   "pred": 2.426360694553611,
+   "sigma_tick": 0.37397918842243666,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 4.0,
+   "pred": 3.6104714314961934,
+   "sigma_tick": 0.22620249268676618,
+   "quadrant": "reliable",
+   "weight": 1.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 1.146095773443986,
+   "sigma_tick": 0.1799823725406321,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 1.2918779716918727,
+   "sigma_tick": 0.2526338189901371,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 1.2075893745037107,
+   "sigma_tick": 0.1706467484851753,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 0.7497721433531671,
+   "sigma_tick": 0.15600422328160513,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 2.0,
+   "pred": 3.6507270550267856,
+   "sigma_tick": 0.5363149820076049,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 2.0,
+   "pred": 1.9355066817221172,
+   "sigma_tick": 0.23569614377032133,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 3.0,
+   "pred": 2.363541534591803,
+   "sigma_tick": 0.3917390090321395,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 3.0,
+   "pred": 2.4353271785423094,
+   "sigma_tick": 0.29088990128922415,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 2.0,
+   "pred": 2.221687833828613,
+   "sigma_tick": 0.27805612108588984,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 3.0,
+   "pred": 3.1793568208521754,
+   "sigma_tick": 0.2654246139433711,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 1.4325299131153688,
+   "sigma_tick": 0.3273194913765629,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 3.0,
+   "pred": 2.770433231861459,
+   "sigma_tick": 0.34146591063272186,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 4.0,
+   "pred": 3.106964940669857,
+   "sigma_tick": 0.28085667953636434,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 3.0,
+   "pred": 1.767737385678911,
+   "sigma_tick": 0.34483949717993206,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 2.0,
+   "pred": 2.6471401978203923,
+   "sigma_tick": 0.4013672533478613,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 1.8675387994241035,
+   "sigma_tick": 0.39363329875569225,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 3.0,
+   "pred": 2.9244110103750645,
+   "sigma_tick": 0.2231691551638713,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 1.3968246177970758,
+   "sigma_tick": 0.1744754023274077,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 1.5975991743132085,
+   "sigma_tick": 0.20440307964665438,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 2.0,
+   "pred": 2.1812186782351315,
+   "sigma_tick": 0.20144630938166175,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 1.0832132783145516,
+   "sigma_tick": 0.09296296767714957,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 3.0,
+   "pred": 2.5120003563613147,
+   "sigma_tick": 0.6187323422181412,
+   "quadrant": "honest_low",
+   "weight": 2.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 1.1350499120269006,
+   "sigma_tick": 0.1871261864299925,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 4.0,
+   "pred": 2.49472832785521,
+   "sigma_tick": 0.47858725004906244,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 1.171361882615792,
+   "sigma_tick": 0.18996637218976478,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 2.0,
+   "pred": 1.6180131781558442,
+   "sigma_tick": 0.31679755010178257,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 2.0,
+   "pred": 1.6953140379395468,
+   "sigma_tick": 0.14714759706297245,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 1.2579757682127601,
+   "sigma_tick": 0.13340078873564729,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 2.0,
+   "pred": 3.7396858749423467,
+   "sigma_tick": 0.48433875244677255,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 1.2451612774037046,
+   "sigma_tick": 0.21809302814681472,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 1.2109655282222922,
+   "sigma_tick": 0.14507150114712253,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 2.2722205679156566,
+   "sigma_tick": 0.5730092218340469,
+   "quadrant": "honest_low",
+   "weight": 2.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 0.9458006974775541,
+   "sigma_tick": 0.14554698561877796,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 3.0,
+   "pred": 1.1179345905354063,
+   "sigma_tick": 0.7044638152661172,
+   "quadrant": "honest_low",
+   "weight": 2.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 4.0,
+   "pred": 3.4178784319522677,
+   "sigma_tick": 0.28174220886080503,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 1.3556795672478006,
+   "sigma_tick": 0.2519331282412197,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 1.771591297179652,
+   "sigma_tick": 0.4130584353787361,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 3.0,
+   "pred": 2.7796023031519956,
+   "sigma_tick": 0.19652844645351625,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 3.0,
+   "pred": 2.3623240332405797,
+   "sigma_tick": 0.38376556194119915,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 1.2056370702536592,
+   "sigma_tick": 0.20425598912386927,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 1.1543880411555592,
+   "sigma_tick": 0.2131693352743128,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 0.9781845334226952,
+   "sigma_tick": 0.14870376885422698,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 3.0,
+   "pred": 3.1139690235459954,
+   "sigma_tick": 0.18971749417014444,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 2.0,
+   "pred": 2.1733289027821825,
+   "sigma_tick": 0.19682006583614328,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 0.7541456706346914,
+   "sigma_tick": 0.1570130699662941,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 1.1158399527629532,
+   "sigma_tick": 0.09953544811332052,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 2.0,
+   "pred": 2.5712440612017096,
+   "sigma_tick": 0.4293142320979495,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 2.0,
+   "pred": 2.282615630331551,
+   "sigma_tick": 0.26802761556801746,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 2.0,
+   "pred": 1.7903304629552432,
+   "sigma_tick": 0.20384587465014176,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 3.0,
+   "pred": 2.676638703376403,
+   "sigma_tick": 0.2045917914800034,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 3.0,
+   "pred": 2.1694828807036615,
+   "sigma_tick": 0.44365770822902617,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 1.4944468332816352,
+   "sigma_tick": 0.19965439322584383,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 3.0,
+   "pred": 2.005332762736354,
+   "sigma_tick": 0.3074095011496553,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 3.0,
+   "pred": 1.7161415641276099,
+   "sigma_tick": 0.6003730110934273,
+   "quadrant": "honest_low",
+   "weight": 2.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 4.0,
+   "pred": 3.649428480393045,
+   "sigma_tick": 0.12484053325459937,
+   "quadrant": "reliable",
+   "weight": 1.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 0.9781359108095251,
+   "sigma_tick": 0.12940763455707294,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 5.0,
+   "pred": 3.855483440000469,
+   "sigma_tick": 0.210726646664816,
+   "quadrant": "reliable",
+   "weight": 1.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 0.29292557334434643,
+   "sigma_tick": 0.1833903619679695,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 1.9826493318796001,
+   "sigma_tick": 0.478431432137601,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 1.3202042584853486,
+   "sigma_tick": 0.35015064894838255,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 2.0,
+   "pred": 1.6569125889753324,
+   "sigma_tick": 0.18964396992165583,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 2.0,
+   "pred": 1.9414488689415428,
+   "sigma_tick": 0.15628371184695294,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 2.0,
+   "pred": 1.8961279320740254,
+   "sigma_tick": 0.10728126246025524,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 1.309932852859473,
+   "sigma_tick": 0.1591691097589804,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 4.0,
+   "pred": 2.816148031541587,
+   "sigma_tick": 0.4682847238314576,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 2.0,
+   "pred": 1.9287975254837009,
+   "sigma_tick": 0.20990481344370132,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 2.0,
+   "pred": 1.9136406714413643,
+   "sigma_tick": 0.13948322445140104,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 1.4671014027233646,
+   "sigma_tick": 0.2090977248453675,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 4.0,
+   "pred": 2.984553822180633,
+   "sigma_tick": 0.5380470413382626,
+   "quadrant": "honest_low",
+   "weight": 2.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 4.0,
+   "pred": 3.228170603227751,
+   "sigma_tick": 0.3571437176671228,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 4.0,
+   "pred": 3.6870525212154632,
+   "sigma_tick": 0.37099143365455545,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 5.0,
+   "pred": 3.845261994189064,
+   "sigma_tick": 0.5989677262479017,
+   "quadrant": "honest_low",
+   "weight": 2.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 2.0,
+   "pred": 1.517907478222241,
+   "sigma_tick": 0.2630438808560635,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 4.0,
+   "pred": 2.4739068835933216,
+   "sigma_tick": 0.6513880016796357,
+   "quadrant": "honest_low",
+   "weight": 2.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 4.0,
+   "pred": 3.491978191415563,
+   "sigma_tick": 0.35920968340951187,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 3.0,
+   "pred": 2.3277283935748385,
+   "sigma_tick": 0.27476263200039364,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 2.0,
+   "pred": 1.810977191650859,
+   "sigma_tick": 0.20033814329194194,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 1.0560652584385246,
+   "sigma_tick": 0.09366072618591484,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 2.0,
+   "pred": 2.595620598465444,
+   "sigma_tick": 0.2788622833928391,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 1.3168466064351945,
+   "sigma_tick": 0.2937819264465324,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 2.0,
+   "pred": 2.241212262926372,
+   "sigma_tick": 0.3489324936765179,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 1.4024049802384153,
+   "sigma_tick": 0.2995354292532822,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 3.0,
+   "pred": 3.369145652295771,
+   "sigma_tick": 0.3318637834168958,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 3.0,
+   "pred": 3.503685977580603,
+   "sigma_tick": 0.33858423806427185,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 2.0,
+   "pred": 1.514811344285249,
+   "sigma_tick": 0.29046686268952737,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 3.0,
+   "pred": 2.4376904656497675,
+   "sigma_tick": 0.3460162115798786,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 3.0,
+   "pred": 3.5796907490599787,
+   "sigma_tick": 0.3205619025268727,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 2.0,
+   "pred": 1.7996554015115593,
+   "sigma_tick": 0.1371968933703201,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 5.0,
+   "pred": 4.004969280878322,
+   "sigma_tick": 0.33291367409595557,
+   "quadrant": "reliable",
+   "weight": 1.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 5.0,
+   "pred": 4.137586333449503,
+   "sigma_tick": 0.38744826811398464,
+   "quadrant": "reliable",
+   "weight": 1.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 3.0,
+   "pred": 3.096395980899021,
+   "sigma_tick": 0.29191637747606214,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 2.0,
+   "pred": 2.854921222794792,
+   "sigma_tick": 0.3362488318595055,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 1.0941529932794238,
+   "sigma_tick": 0.16039292414375883,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 6.0,
+   "pred": 3.0173425529152413,
+   "sigma_tick": 1.1869910946976805,
+   "quadrant": "honest_low",
+   "weight": 2.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 1.681713442403301,
+   "sigma_tick": 0.34009724216908505,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 4.0,
+   "pred": 2.3855235207895253,
+   "sigma_tick": 0.5274056774150716,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 2.0,
+   "pred": 2.2606486369411343,
+   "sigma_tick": 0.21029256772962146,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 5.0,
+   "pred": 4.243991752184997,
+   "sigma_tick": 0.2942822590957601,
+   "quadrant": "reliable",
+   "weight": 1.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 3.0,
+   "pred": 3.276674013235968,
+   "sigma_tick": 0.19471817191350455,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 1.1293071086396793,
+   "sigma_tick": 0.20905849420463385,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 1.0478957474931838,
+   "sigma_tick": 0.14801875568209014,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 6.0,
+   "pred": 4.36550208278182,
+   "sigma_tick": 0.41830353133427844,
+   "quadrant": "reliable",
+   "weight": 1.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 1.245853463591775,
+   "sigma_tick": 0.23054430739106346,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 3.0,
+   "pred": 3.6283584717614423,
+   "sigma_tick": 0.34854032816053326,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 0.983630314570513,
+   "sigma_tick": 0.11456127536737855,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 2.0,
+   "pred": 2.6787773376227584,
+   "sigma_tick": 0.5286802767691737,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 1.4630613902362655,
+   "sigma_tick": 0.34044170058528694,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 2.0,
+   "pred": 1.3359468639527212,
+   "sigma_tick": 0.3855531320354435,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 0.8103822219794687,
+   "sigma_tick": 0.1667446710906358,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 5.0,
+   "pred": 4.362581186055422,
+   "sigma_tick": 0.3846036888579819,
+   "quadrant": "reliable",
+   "weight": 1.0
+  },
+  {
+   "cls": "quantum",
+   "truth": 1.0,
+   "pred": 0.7171439987224489,
+   "sigma_tick": 0.1923719226608428,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.12256717776874791,
+   "sigma_tick": 0.1160814586454706,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.1560160600104015,
+   "sigma_tick": 0.12340390191645859,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.05678601727223989,
+   "sigma_tick": 0.06697068660403614,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.10964433044432247,
+   "sigma_tick": 0.08631515039380813,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.0632621693795664,
+   "sigma_tick": 0.12715644868429804,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.021749511248932218,
+   "sigma_tick": 0.04812420500165436,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.020058988397284157,
+   "sigma_tick": 0.05548334632390171,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.04355161344905701,
+   "sigma_tick": 0.12005421528403762,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.0492540586151055,
+   "sigma_tick": 0.05422801619727513,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.08265605108726282,
+   "sigma_tick": 0.06138044708372277,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.10078983958517101,
+   "sigma_tick": 0.10237397722143163,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.14671436940130045,
+   "sigma_tick": 0.15574981234300408,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.049826324175741454,
+   "sigma_tick": 0.058123745564694795,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.07659539550152399,
+   "sigma_tick": 0.10370672560092217,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.4413587530865558,
+   "sigma_tick": 0.33597078213056536,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.06409954602973705,
+   "sigma_tick": 0.08861767361017443,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": -0.03717212280358779,
+   "sigma_tick": 0.03980022521622049,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.3583230796526369,
+   "sigma_tick": 0.22746858619898003,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.03281926905436661,
+   "sigma_tick": 0.06492011571668858,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": -0.005584205968681688,
+   "sigma_tick": 0.08216717996059096,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.04082369748060529,
+   "sigma_tick": 0.053644086430847934,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.02711804397098253,
+   "sigma_tick": 0.04694096421079026,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.02592009701326585,
+   "sigma_tick": 0.05254121288352358,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.12996148746992753,
+   "sigma_tick": 0.09815871597516476,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.045102985964685774,
+   "sigma_tick": 0.08185823158604812,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.08296781156119096,
+   "sigma_tick": 0.07775133707986294,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.026718348602979367,
+   "sigma_tick": 0.030566775230245646,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.005480282403751635,
+   "sigma_tick": 0.057151507434214925,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.030186738122914513,
+   "sigma_tick": 0.019684746656995072,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": -0.004131925422776954,
+   "sigma_tick": 0.07835640689553217,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.04798575453384471,
+   "sigma_tick": 0.05314947657690987,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.16111984870730323,
+   "sigma_tick": 0.06515504645965911,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.193227386890034,
+   "sigma_tick": 0.13403988384201462,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.11377719464551836,
+   "sigma_tick": 0.055706285343919595,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.11791668928512286,
+   "sigma_tick": 0.08659804877896277,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": -0.007676327085181231,
+   "sigma_tick": 0.03952232450200131,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.04567328513864301,
+   "sigma_tick": 0.08467611807246635,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": -0.04478895933782018,
+   "sigma_tick": 0.03821955797713655,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.1544675348048719,
+   "sigma_tick": 0.11685137118612507,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.25041398999204295,
+   "sigma_tick": 0.24076392517300563,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.26277995240178353,
+   "sigma_tick": 0.16089640765951038,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.08597268272800973,
+   "sigma_tick": 0.0889273501089001,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.0009194604355388775,
+   "sigma_tick": 0.032727766551969316,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.06835212197240667,
+   "sigma_tick": 0.08197470549504962,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.0538661174798578,
+   "sigma_tick": 0.08199715196432233,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.052719628502189905,
+   "sigma_tick": 0.03898339709091594,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.10272493166867157,
+   "sigma_tick": 0.18081267214139662,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.1374037577231378,
+   "sigma_tick": 0.09770810595887447,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.07573593166857842,
+   "sigma_tick": 0.09184063644458201,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.1462627314497281,
+   "sigma_tick": 0.05899404641306012,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.07060604035906005,
+   "sigma_tick": 0.07738332682761004,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.04557357610828067,
+   "sigma_tick": 0.058051767338831765,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": -0.006444922948986485,
+   "sigma_tick": 0.03461059513808597,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": -0.05425283864098977,
+   "sigma_tick": 0.043054893230172586,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.37160709607268605,
+   "sigma_tick": 0.1996759733101925,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.04089269508495589,
+   "sigma_tick": 0.06089547565980318,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.0074476266651169005,
+   "sigma_tick": 0.05829192538608913,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.45395188350467397,
+   "sigma_tick": 0.20678459429075832,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.031709911856489637,
+   "sigma_tick": 0.047006437734189,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.0057751477746050125,
+   "sigma_tick": 0.06044390782301676,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.07557468773327755,
+   "sigma_tick": 0.06604445042906651,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.017263453677128518,
+   "sigma_tick": 0.043077202404957694,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.18448536266713786,
+   "sigma_tick": 0.11489150354645225,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.0073542281644760595,
+   "sigma_tick": 0.05522726585500165,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.03932602465271073,
+   "sigma_tick": 0.06701086557371765,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.28793691254916304,
+   "sigma_tick": 0.11736241292178824,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": -0.03401258725865329,
+   "sigma_tick": 0.0345053488663358,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.03881396905536191,
+   "sigma_tick": 0.12057738119794173,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": -0.019786963838905602,
+   "sigma_tick": 0.0383949078099549,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.14855123324000258,
+   "sigma_tick": 0.14054903705159486,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.004752935709717495,
+   "sigma_tick": 0.05286323141077931,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.08816133609769526,
+   "sigma_tick": 0.08522374083590921,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.19277044804656854,
+   "sigma_tick": 0.14496330158275272,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.03082055402591978,
+   "sigma_tick": 0.04811438069791466,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.014460973919727792,
+   "sigma_tick": 0.03228962346628012,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.011899446474416552,
+   "sigma_tick": 0.03206615675387898,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.10006031789947839,
+   "sigma_tick": 0.04959505814268383,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": -0.008560645953669437,
+   "sigma_tick": 0.03858993788867661,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.11970614067304254,
+   "sigma_tick": 0.13068652900248792,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": -0.022999350480448037,
+   "sigma_tick": 0.025185540574463313,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": -0.01601126353570516,
+   "sigma_tick": 0.08649948664207208,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": -0.013970154091906559,
+   "sigma_tick": 0.028599378238827213,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.0138068254711291,
+   "sigma_tick": 0.04572101150903988,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.09252352650144499,
+   "sigma_tick": 0.10976219209311662,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": -0.014497875689222364,
+   "sigma_tick": 0.09574746633899986,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.03766306567376335,
+   "sigma_tick": 0.09129028490909383,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": -0.003365194297604163,
+   "sigma_tick": 0.035473968890636906,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.11826366152150491,
+   "sigma_tick": 0.13478850702539014,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.28967105217820294,
+   "sigma_tick": 0.22153748193380293,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": -0.031436162404363165,
+   "sigma_tick": 0.039963940139052384,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.003457589543435896,
+   "sigma_tick": 0.046030107399986725,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.0628129719602213,
+   "sigma_tick": 0.04835447378456239,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.342028140119822,
+   "sigma_tick": 0.3087082175365844,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.005151687972278934,
+   "sigma_tick": 0.04979034143712266,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.13178359121324557,
+   "sigma_tick": 0.17557063996274552,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.032442690030565144,
+   "sigma_tick": 0.0910596804396599,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": -0.02042844586168465,
+   "sigma_tick": 0.06958759248660097,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": -0.02514506559357839,
+   "sigma_tick": 0.04049003184080314,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.044777823981363686,
+   "sigma_tick": 0.045813745355401586,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.008490743725875643,
+   "sigma_tick": 0.03486568188018274,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.22919740531474808,
+   "sigma_tick": 0.10983026802596726,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.029710099664894535,
+   "sigma_tick": 0.044762594496284516,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 5.449415123225847e-05,
+   "sigma_tick": 0.04126231712063005,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.08281898294369813,
+   "sigma_tick": 0.054653684959323254,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.0385532736242023,
+   "sigma_tick": 0.06729149979353036,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": -0.012036849374110023,
+   "sigma_tick": 0.029643604073221176,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": -0.022615575834478308,
+   "sigma_tick": 0.03321171586215903,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.016713077311506647,
+   "sigma_tick": 0.026196223760105383,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": -0.047492461449670786,
+   "sigma_tick": 0.045632400188373896,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.30635930639255526,
+   "sigma_tick": 0.33080653369714585,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": -0.03909755215368141,
+   "sigma_tick": 0.03320758490559146,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.14377430992810164,
+   "sigma_tick": 0.08545670606112137,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.05038136053237213,
+   "sigma_tick": 0.05934064459709601,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.08514799038923393,
+   "sigma_tick": 0.05292150665953914,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.02764016314379989,
+   "sigma_tick": 0.05330135154117877,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.12338541189261652,
+   "sigma_tick": 0.19925250299219216,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.3059058465565663,
+   "sigma_tick": 0.17553985323568735,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": -0.021246480285626847,
+   "sigma_tick": 0.08820447582310531,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": -0.01635798083048324,
+   "sigma_tick": 0.06453283066460903,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.03782039282163203,
+   "sigma_tick": 0.04853968354215159,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.13670413640394724,
+   "sigma_tick": 0.08808172693014243,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.3300641422640732,
+   "sigma_tick": 0.18462423484623533,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.14525150006964177,
+   "sigma_tick": 0.08257940555019942,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.06018976697030785,
+   "sigma_tick": 0.13090629962066347,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.02082965153365161,
+   "sigma_tick": 0.07582876068632047,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": -0.016060536179424788,
+   "sigma_tick": 0.032070260268932435,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.16240956382964927,
+   "sigma_tick": 0.16380282215349268,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.12550349258649432,
+   "sigma_tick": 0.10796027988758748,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.039938441374680646,
+   "sigma_tick": 0.04841875136534223,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": -0.013305246389845024,
+   "sigma_tick": 0.03443415142239993,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.1973758737312141,
+   "sigma_tick": 0.24248637984672683,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": -0.0036941747125787084,
+   "sigma_tick": 0.024342719782710052,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": -0.017170233908540215,
+   "sigma_tick": 0.07089700831775317,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.33626648138303816,
+   "sigma_tick": 0.19279211631225407,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.01579791374415284,
+   "sigma_tick": 0.027214275765309673,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.42560620600346144,
+   "sigma_tick": 0.3599718983069958,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.0103189142998952,
+   "sigma_tick": 0.06717870056046099,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.05346318816739179,
+   "sigma_tick": 0.08943719112628307,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": -0.03636424740491733,
+   "sigma_tick": 0.050839852591512774,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.055908512784204084,
+   "sigma_tick": 0.048077393720554626,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.040712365597192324,
+   "sigma_tick": 0.04952585357799227,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.024499822331671292,
+   "sigma_tick": 0.05448982256300388,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.26681535130723255,
+   "sigma_tick": 0.17943909671012637,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": -0.030316076046361665,
+   "sigma_tick": 0.039619849875759165,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": -0.008825005396966144,
+   "sigma_tick": 0.04365673128064006,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.00816417735819715,
+   "sigma_tick": 0.03802753120345784,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": -0.057633334799366484,
+   "sigma_tick": 0.027902476393717474,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.0117896958724157,
+   "sigma_tick": 0.03332439986877723,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.06294506783595442,
+   "sigma_tick": 0.06539078653056238,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.01525099110329944,
+   "sigma_tick": 0.046501917017821075,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.007060960414526857,
+   "sigma_tick": 0.04448327940673895,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": -0.0325430856240105,
+   "sigma_tick": 0.032240886919876026,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": -0.0020053564144980446,
+   "sigma_tick": 0.06721498230755989,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.06475563027068743,
+   "sigma_tick": 0.07558820313176971,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.3176561082334325,
+   "sigma_tick": 0.1611617639879607,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.14311835933117184,
+   "sigma_tick": 0.07070062217009226,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.6562961005702321,
+   "sigma_tick": 0.25233752752816013,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.05100039488271575,
+   "sigma_tick": 0.09706360806624267,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": 0.08680486703428461,
+   "sigma_tick": 0.08444446500783868,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  },
+  {
+   "cls": "thermal",
+   "truth": 0.0,
+   "pred": -0.0644956098977485,
+   "sigma_tick": 0.04313186064220466,
+   "quadrant": "calibration_artifact",
+   "weight": 5.0
+  }
+ ],
+ "plain_N_stop": 80,
+ "ht_N_stop": 20
+}
