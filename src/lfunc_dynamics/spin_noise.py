@@ -1,16 +1,5 @@
 r"""
-spin_noise.py (v2.1) — синтетические трассы считывания спинтроники (MgO-MTJ)
-с тремя видами шума и физически корректными оценками DC.
-
-Исправлено относительно v2: единое имя параметра shot_amp (был NameError).
-Физика:
-  thermal — Орнштейн-Уленбек (магнонный) + найквистовский пол; гауссов,
-            коррелированный; длинно-коррелированный шум НЕ бьётся
-            перевзвешиванием, бьётся только чоппер-модуляцией.
-  shot    — разреженный пуассоновский процесс (lam<1/отсчёт), центрирование
-            по АНСАМБЛЕВОМУ среднему lam*gain_f (не по выборочному!).
-  quantum — T-независимый пол нулевых колебаний + двухмодовые сжатые пары
-            магнонов с ОБЩЕЙ фазой (фазовая защёлка => witness).
+spin_noise.py (v2.2) — добавлен метод trace_mixed() для суперпозиции всех трёх шумов.
 """
 import numpy as np
 
@@ -53,7 +42,7 @@ class SpinNoiseRig:
         q = np.zeros(self.n)
         for i in range(1, self.n):
             q[i] = self.phi_f * q[i - 1] + counts[i - 1]
-        q -= self.lam * self.gain_f          # ансамблевое центрирование
+        q -= self.lam * self.gain_f
         return self.shot_amp * q / np.sqrt(self.lam * self.gain_f + 1e-12)
 
     def quantum(self, rng):
@@ -74,6 +63,24 @@ class SpinNoiseRig:
         noise = {"thermal": self.thermal, "shot": self.shot,
                  "quantum": self.quantum}[species](rng)
         return dc * (self.chop if chopped else 1.0) + noise, noise
+
+    def components(self, rng):
+        return self.thermal(rng), self.shot(rng), self.quantum(rng)
+
+    def trace_mixed(self, rng, dc=5.0, weights=None, chopped=False):
+        """Суперпозиция с АБСОЛЮТНЫМИ амплитудами (без нормировки):
+        weights ∈ [0.4, 1.0]^3 сохраняют физическую силу каждой компоненты.
+        Возвращает доли дисперсии компонент — наблюдаемую цель декомпозиции."""
+        n_th, n_sh, n_qu = self.components(rng)
+        if weights is None:
+            weights = rng.uniform(0.4, 1.0, size=3)
+        w_th, w_sh, w_qu = weights
+        noise = w_th * n_th + w_sh * n_sh + w_qu * n_qu
+        v = np.array([w_th ** 2 * n_th.var(),
+                      w_sh ** 2 * n_sh.var(),
+                      w_qu ** 2 * n_qu.var()])
+        fracs = v / v.sum()
+        return dc * (self.chop if chopped else 1.0) + noise, dict(fracs=fracs, weights=weights)
 
     # ---------- признаки ----------
     def _env(self, x):
@@ -109,7 +116,7 @@ class SpinNoiseRig:
         return dict(var=float(x.var()), skew=skew, kurt=kurt, ac1=ac1,
                     hf=hf, fano=fano, pair_m=pair_m, pair_dev=pair_dev)
 
-    # ---------- readout: синхронное детектирование (+ клип для shot) ----------
+    # ---------- readout ----------
     def readout(self, x, clip=False):
         y = x * self.chop
         if clip:
