@@ -1,55 +1,49 @@
 r"""
-spin_noise.py — синтетические трассы считывания спинтроники (MgO-MTJ)
-с тремя видами шума и физическими дискриминаторами для ватчдога CoreCabinet.
+spin_noise.py (v2.1) — синтетические трассы считывания спинтроники (MgO-MTJ)
+с тремя видами шума и физически корректными оценками DC.
 
-Виды:
-  thermal  — Орнштейн-Уленбек (магнонный) + найквистовский пол; гауссов,
-             коррелированный, лоренцевский спектр, классический detailed balance.
-  shot     — составной пуассоновский процесс туннельных событий (rate = I/e,
-             фактор Фано), импульсы сформированы однополюсным фильтром tau_f;
-             дискретный, скошенный, T-независимый.
-  quantum  — T-независимый пол нулевых колебаний ПЛЮС двухмодовые сжатые пары
-             магнонов с ОБЩЕЙ случайной фазой (фазовая защёлка). Общая фаза —
-             неклассическая подпись: невидима для степенных статистик, видима
-             фазоинвариантным joint matched filter по огибающей.
-
-Дискриминаторы (признаки):
-  ac1      лаго-1 автокорреляция            -> thermal
-  skew/kurt моменты приращений             -> shot
-  fano     var/mean^2 приращений            -> shot (дискретность)
-  hf       доля мощности верхней полосы     -> quantum (нулевой пол)
-  pair_m   фазоинвариантный matched filter  -> quantum (пары)
-  pair_dev разброс pair_m по несущим        -> квантовая Боголюбов-подобная константность
+Исправлено относительно v2: единое имя параметра shot_amp (был NameError).
+Физика:
+  thermal — Орнштейн-Уленбек (магнонный) + найквистовский пол; гауссов,
+            коррелированный; длинно-коррелированный шум НЕ бьётся
+            перевзвешиванием, бьётся только чоппер-модуляцией.
+  shot    — разреженный пуассоновский процесс (lam<1/отсчёт), центрирование
+            по АНСАМБЛЕВОМУ среднему lam*gain_f (не по выборочному!).
+  quantum — T-независимый пол нулевых колебаний + двухмодовые сжатые пары
+            магнонов с ОБЩЕЙ фазой (фазовая защёлка => witness).
 """
 import numpy as np
 
 
 class SpinNoiseRig:
     def __init__(self, fs=1.0e9, n=2048, tau_mag=50.0e-9, tau_f=0.4e-9,
-                 sigma_th=1.0, shot_rate=0.35, shot_q=0.9, fano=1.0,
+                 sigma_th=1.0, shot_rate=0.35, shot_amp=0.9, fano=1.0,
                  zp_amp=0.35, pair_rate=3.0, pair_amp=0.35,
                  chop_period=128, seed=0):
         self.fs, self.n = float(fs), int(n)
         self.dt = 1.0 / self.fs
         self.t = np.arange(self.n) * self.dt
-        self.phi_mag = np.exp(-self.dt / tau_mag)
-        self.sigma_ou = sigma_th * np.sqrt(1.0 - np.exp(-2.0 * self.dt / tau_mag))
+        self.k = np.fft.rfftfreq(self.n, self.dt)
+        self.phi = np.exp(-self.dt / tau_mag)
+        self.sigma_th = sigma_th
+        self.sigma_ou = sigma_th * np.sqrt(1.0 - self.phi ** 2)
         self.phi_f = np.exp(-self.dt / tau_f)
+        self.lam = shot_rate
+        self.gain_f = 1.0 / (1.0 - self.phi_f)
         self.shot_rate, self.shot_amp, self.fano = shot_rate, shot_amp, fano
         self.zp_amp, self.pair_rate, self.pair_amp = zp_amp, pair_rate, pair_amp
+        half = int(chop_period) // 2
+        self.chop = np.where((np.arange(self.n) // half) % 2 == 0, 1.0, -1.0)
         self.carriers = 2 * np.pi * np.array([60e6, 100e6, 140e6, 180e6])
         self.delays = np.array([8e-9, 16e-9, 24e-9])
         self.env_w = 3e-9
-        self.lam = shot_rate
-        self.gain_f = 1.0 / (1.0 - self.phi_f)          # ансамблевый DC-гейн фильтра
-        half = chop_period // 2
-        self.chop = np.where((np.arange(self.n) // half) % 2 == 0, 1.0, -1.0)
 
     # ---------- генераторы ----------
     def thermal(self, rng):
-        x = np.zeros(self.n)
+        x = np.empty(self.n)
+        x[0] = self.sigma_th * rng.standard_normal()
         for i in range(1, self.n):
-            x[i] = x[i - 1] * self.phi_mag + self.sigma_ou * rng.standard_normal()
+            x[i] = self.phi * x[i - 1] + self.sigma_ou * rng.standard_normal()
         return x
 
     def shot(self, rng):
@@ -59,13 +53,12 @@ class SpinNoiseRig:
         q = np.zeros(self.n)
         for i in range(1, self.n):
             q[i] = self.phi_f * q[i - 1] + counts[i - 1]
-        q -= self.lam * self.gain_f        # АНСАМБЛЕВОЕ центрирование, не выборочное
-        return self.shot_q * q / np.sqrt(self.lam * self.gain_f + 1e-12)
+        q -= self.lam * self.gain_f          # ансамблевое центрирование
+        return self.shot_amp * q / np.sqrt(self.lam * self.gain_f + 1e-12)
 
     def quantum(self, rng):
         x = self.zp_amp * rng.standard_normal(self.n)
-        n_pairs = int(rng.poisson(self.pair_rate))
-        for _ in range(n_pairs):
+        for _ in range(int(rng.poisson(self.pair_rate))):
             w = float(rng.choice(self.carriers))
             dl = float(rng.choice(self.delays))
             t1 = rng.uniform(20e-9, self.t[-1] - dl - 20e-9)
@@ -77,15 +70,17 @@ class SpinNoiseRig:
                                   + g2 * np.cos(w * (self.t - t2) + th))
         return x
 
-    def trace(self, rng, species, dc=5.0, chopped=False):
+    def trace(self, rng, species="thermal", dc=5.0, chopped=False):
         noise = {"thermal": self.thermal, "shot": self.shot,
                  "quantum": self.quantum}[species](rng)
         return dc * (self.chop if chopped else 1.0) + noise, noise
 
     # ---------- признаки ----------
-    def _envelope(self, x):
-        from scipy.signal import hilbert
-        return np.abs(hilbert(x - x.mean()))
+    def _env(self, x):
+        full = np.fft.fft(x)
+        full[1:self.n // 2] *= 2.0
+        full[self.n // 2 + 1:] = 0.0
+        return np.abs(np.fft.ifft(full))
 
     def features(self, x):
         d = np.diff(x)
@@ -96,58 +91,26 @@ class SpinNoiseRig:
         sp = np.abs(np.fft.rfft(x - x.mean())) ** 2
         hf = float(sp[len(sp) // 2:].mean() / (sp.mean() + 1e-12))
         fano = float(d.var() / (np.abs(d).mean() ** 2 + 1e-12))
-        env = self._envelope(x)
-        env = env - env.mean()
-        e0 = float(np.sqrt((env ** 2).mean()) + 1e-12)
+        xc = x - x.mean()
         pair_ms = []
         for w in self.carriers:
-            band = np.abs(np.fft.irfft(
-                np.fft.rfft(x - x.mean()) *
-                np.exp(-(np.fft.rfftfreq(self.n, self.dt) - w / (2 * np.pi)) ** 2
-                       / (2 * 20e6 ** 2)), self.n))
-            eb = band - band.mean()
+            mask = np.exp(-(self.k - w / (2 * np.pi)) ** 2 / (2 * 20e6 ** 2))
+            band = np.fft.irfft(np.fft.rfft(xc) * mask, self.n)
+            eb = self._env(band)
+            eb = eb - eb.mean()
+            denom = np.sqrt(np.mean(eb ** 2)) + 1e-12
             vals = []
             for dl in self.delays:
-                k = int(dl * self.fs)
-                vals.append(float(np.mean(eb[:-k] * eb[k:])) /
-                            (np.sqrt(np.mean(eb ** 2)) * np.sqrt(np.mean(eb[k:] ** 2)) + 1e-12))
+                kk = int(dl * self.fs)
+                vals.append(float(np.mean(eb[:-kk] * eb[kk:])) / denom ** 2)
             pair_ms.append(max(vals))
         pair_m = float(max(pair_ms))
-        pair_dev = float(np.std(pair_ms) / (np.mean(pair_ms) + 1e-12))
+        pair_dev = float(np.std(pair_ms) / (abs(np.mean(pair_ms)) + 1e-12))
         return dict(var=float(x.var()), skew=skew, kurt=kurt, ac1=ac1,
                     hf=hf, fano=fano, pair_m=pair_m, pair_dev=pair_dev)
 
-    # ---------- очистка (только классические виды) ----------
-    def clean_thermal(self, x):
-        alpha = 1.0 - self.phi_mag
-        s = np.zeros_like(x)
-        s[0] = x[0]
-        for i in range(1, self.n):
-            s[i] = s[i - 1] + alpha * (x[i] - s[i - 1])
-        return x - (s - s.mean())
-
-    def clean_shot(self, x):
-        half = 4
-        med = np.array([np.median(x[max(0, i - half):i + half + 1])
-                        for i in range(self.n)])
-        r = x - med
-        thr = 3.0 * np.std(r)
-        out = x.copy()
-        m = np.abs(r) > thr
-        out[m] = med[m]
-        return out
-
-    def clean(self, x, species):
-        """Квантовый вид НЕ чистится классически: только свидетельство."""
-        if species == "thermal":
-            return self.clean_thermal(x)
-        if species == "shot":
-            return self.clean_shot(x)
-        return x  # quantum: witness-only
-
+    # ---------- readout: синхронное детектирование (+ клип для shot) ----------
     def readout(self, x, clip=False):
-        """Синхронное детектирование: y = x*chop, среднее = оценка DC.
-        clip=True подавляет разреженные дробовые импульсы (MAD-порог)."""
         y = x * self.chop
         if clip:
             med = np.median(y)
@@ -155,4 +118,3 @@ class SpinNoiseRig:
             s = 1.4826 * np.median(np.abs(r)) + 1e-12
             y = med + np.clip(r, -3.0 * s, 3.0 * s)
         return float(y.mean())
-        
