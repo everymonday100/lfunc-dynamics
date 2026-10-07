@@ -1,0 +1,24 @@
+{
+  "stage": "e3_doubleprime",
+  "n_episodes": 120,
+  "buffer_capacity": 8,
+  "n_fresh": 8,
+  "n_erased": 112,
+  "results": {
+    "buffer_to_fresh": -0.016922798754066104,
+    "buffer_to_erased": -0.015022425105426729,
+    "buffer_to_random": -0.014057599957068678,
+    "h_to_fresh": -0.06145581542180567,
+    "h_to_erased": 0.5517063200415264,
+    "h_to_random": -0.058729066639443994,
+    "buf_h_to_fresh": -0.06151710745189187,
+    "buf_h_to_erased": 0.5516670991203068,
+    "buf_h_to_random": -0.058786257946605414
+  },
+  "verdict_lines": [
+    "\u2717 Positive control FAILED: buffer\u2192fresh R\u00b2 < 0.8 (decoder broken)",
+    "\u2717 h and buffer in different subspaces: h\u2192fresh R\u00b2 < 0.5",
+    "\u2717 Irreversibility questionable: buf+h\u2192erased R\u00b2 > 0.1 (info recoverable)"
+  ],
+  "arrow_status": "Irreversibility not demonstrated"
+}
