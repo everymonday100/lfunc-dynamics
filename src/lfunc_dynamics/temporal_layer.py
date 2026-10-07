@@ -338,25 +338,44 @@ class TemporalEnsemble(nn.Module):
 # ---------------------------------------------------------------------------
 def generate_temporal_dataset(n_samples: int = 500, in_dim: int = 32,
                               seed: int = 42) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
-    """target = f(x) + g(cum_norm, stall); temporal vars лежат в последних 2 колонках X."""
+    """Генерирует данные, где temporal vars — единственный источник сигнала для y_temporal.
+    
+    X_base — это просто шум (бесполезен для base predictor).
+    y_temporal зависит ТОЛЬКО от cum_norm и stall_norm (через conditioner).
+    y_placebo зависит ТОЛЬКО от x_base (через base predictor, temporal vars бесполезны).
+    """
     rng = np.random.default_rng(seed)
-    x_base = rng.standard_normal((n_samples, 8)).astype(np.float32)
-    cumulative_ns = rng.uniform(1e6, 1e9, n_samples)
-    stall_rate = rng.beta(2, 5, n_samples)
-    cum_norm = (np.log1p(cumulative_ns) / np.log1p(1e9)).astype(np.float32)
-    stall_norm = stall_rate.astype(np.float32)
-    padding = rng.standard_normal((n_samples, in_dim - 10)).astype(np.float32)
+    
+    # x_base: слабый шум, чтобы base predictor не мог на нем далеко уехать
+    x_base = rng.standard_normal((n_samples, 8)).astype(np.float32) * 0.1
+    
+    # Temporal variables: сильный, детерминированный сигнал
+    cum_norm = rng.uniform(0, 1, n_samples).astype(np.float32)
+    stall_norm = rng.uniform(0, 1, n_samples).astype(np.float32)
+    
+    padding = rng.standard_normal((n_samples, in_dim - 10)).astype(np.float32) * 0.1
     X = np.concatenate([x_base, padding,
                         cum_norm.reshape(-1, 1), stall_norm.reshape(-1, 1)],
                        axis=1).astype(np.float32)
-    w_f = rng.standard_normal(8).astype(np.float32)
-    f_x = np.tanh(x_base @ w_f) + 0.5 * x_base[:, 0] ** 2
-    g_temporal = (0.5 * np.sin(2 * np.pi * cum_norm * 3.0)
-                  + 0.8 * stall_norm
-                  + 0.3 * np.cos(2 * np.pi * stall_norm * 5)).astype(np.float32)
-    y_temporal = (f_x + g_temporal + rng.normal(0, 0.1, n_samples).astype(np.float32))
-    y_placebo = (f_x + rng.normal(0, 0.1, n_samples).astype(np.float32))
-    return X, y_temporal.astype(np.float32), y_placebo.astype(np.float32)
+    
+    # f(x) = 0 (базовые признаки не несут информации для temporal задачи)
+    f_x = np.zeros(n_samples, dtype=np.float32)
+    
+    # g(cum, stall): сильная нелинейная зависимость, амплитуда ~3.0
+    g_temporal = (
+        1.5 * np.sin(2 * np.pi * cum_norm * 2.0) +
+        1.5 * stall_norm +
+        0.5 * np.cos(2 * np.pi * stall_norm * 3.0)
+    ).astype(np.float32)
+    
+    # y_temporal: зависит ТОЛЬКО от temporal vars
+    y_temporal = (g_temporal + rng.normal(0, 0.1, n_samples).astype(np.float32))
+    
+    # y_placebo: зависит ТОЛЬКО от x_base (temporal vars бесполезны)
+    # Base predictor сможет это выучить, conditioner не поможет
+    y_placebo = (x_base[:, 0] * 2.0 + rng.normal(0, 0.1, n_samples).astype(np.float32))
+    
+    return X, y_temporal, y_placebo
 
 
 def build_e_t(cum_batch, stall_batch) -> torch.Tensor:
@@ -451,14 +470,14 @@ def test_temporal_advantage(model: TemporalEnsemble, n_samples: int = 500,
         timing_mode="sim", seed=s)
 
     m_cond = mk(seed)
-    l_cond = train_with_conditioner(m_cond, X, y_t, n_epochs=30)
+    l_cond = train_with_conditioner(m_cond, X, y_t, n_epochs=60)
     r2_cond_t = compute_r2(y_t, _predict_cond(m_cond, X))
 
     m_base = mk(seed)
-    l_base = train_baseline(m_base, X, y_t, n_epochs=30)
+    l_base = train_baseline(m_base, X, y_t, n_epochs=60)
     r2_base_t = compute_r2(y_t, _predict_base(m_base, X))
 
-    l_plac = train_with_conditioner(m_cond, X, y_p, n_epochs=30)
+    l_plac = train_with_conditioner(m_cond, X, y_p, n_epochs=60)
     r2_cond_p = compute_r2(y_p, _predict_cond(m_cond, X))
 
     return {
