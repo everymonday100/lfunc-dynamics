@@ -1,22 +1,25 @@
 {
-  "stage": "e3_level1",
-  "n_pairs": 56,
+  "stage": "e3_level1_final",
+  "n_pairs": 192,
+  "level1_present": true,
   "results": {
-    "buffer_to_fresh": -0.11703947027813966,
-    "buffer_to_erased": 0.0016092225455830445,
-    "buffer_to_random": -0.0646163099753434,
-    "h_to_fresh": -0.4333977551819501,
-    "h_to_erased": -0.4329827271638107,
-    "h_to_random": -0.09654827331662585,
-    "buf_h_to_fresh": -0.18882761595776087,
-    "buf_h_to_erased": -0.16755267265279983,
-    "buf_h_to_random": -0.1250805983726837
+    "buf_last_to_fresh": 0.9944748528661504,
+    "buf_last_to_erased": -0.014511237232467833,
+    "buf_last_to_random": -0.02033736867554592,
+    "buf_all_to_fresh": 0.017608004331497895,
+    "buf_all_to_erased": -0.05310962778639938,
+    "buf_all_to_random": -0.0629037786144735,
+    "h_to_fresh": 0.3240276170370596,
+    "h_to_erased": -0.5876299882180762,
+    "h_to_random": -0.6415734242654212,
+    "buf_last_h_to_fresh": 0.9766895213110722,
+    "buf_last_h_to_erased": -0.5929602495508077,
+    "buf_last_h_to_random": -0.6564018140000194
   },
   "verdict_lines": [
-    "FAIL positive control: buffer->fresh R2=-0.117",
-    "FAIL h carries buffer: h->fresh R2=-0.433 (Level 1 not active?)",
-    "PASS irreversibility: all *_to_erased < 0.1 {'buffer': 0.002, 'h': -0.433, 'buf_h': -0.168}"
+    "PASS positive control: buf_last->fresh R2=0.994",
+    "PASS h carries buffer: h->fresh R2=0.324",
+    "PASS irreversibility: max *_to_erased < 0.1 {'buf_last': -0.015, 'buf_all': -0.053, 'h': -0.588, 'buf_last_h': -0.593}"
   ],
-  "arrow_status": "Irreversibility not demonstrated",
-  "level1_active": false
+  "arrow_status": "Irreversibility established (erasure unreadable, decoder validated)"
 }
