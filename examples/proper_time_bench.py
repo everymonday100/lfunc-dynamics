@@ -1,20 +1,17 @@
 #!/usr/bin/env python3
-r"""proper_time_bench.py (v4) — reviewer-refined protocol.
+r"""proper_time_bench.py (v4.1) — reviewer-refined protocol, single-file rebuild.
 
-T1 seed/spectral transfer + bootstrap CI + permutation p:
-   internal arm must predict drive level across simulator seeds AND across
-   spectral shape (white -> OU, same std); external arm must fail.
-T4 Spearman partial corr(erased, sat | steps); rule: >=0.5 proxy valid,
-   <=0.2 link entirely via episode length.
-T2 AUC + sign for centroid; transient energy; exponential relaxation fit
-   d[t] ~ A exp(-t/tau); Cohen's d per candidate; best feature by AUC.
-T3 r[t] trajectories; gap-window rise test Delta r (during - pre) for
-   gapped / gapnoise / drift / smooth; normalized time-to-peak;
-   LOO-LDA on (slope_first_half, max_r) as formalization of visual split.
+T1 seed/spectral transfer + bootstrap CI (fixed train) + permutation p.
+T4 Spearman partial corr(erased, sat | steps).
+T2 AUC + sign for centroid; transient energy; relaxation tau; Cohen's d.
+T3 r[t] trajectories; robust gap-window rise test (quartiles, adaptive
+   episode length); normalized time-to-peak; LOO-LDA on 2 features;
+   coherence curves plot (matplotlib optional).
 """
 import json
-import numpy as np
 from pathlib import Path
+
+import numpy as np
 
 from lfunc_dynamics.proper_time import RecurrentCell, ProperTimeProbe
 
@@ -22,7 +19,9 @@ T_MAX, LAM_TARGET = 128, 40.0
 B_BOOT, B_PERM = 300, 200
 
 
-# ---------------- utilities ----------------
+# --------------------------------------------------------------------------
+# utilities
+# --------------------------------------------------------------------------
 def ranks(x):
     x = np.asarray(x, float)
     order = np.argsort(x, kind="mergesort")
@@ -37,6 +36,7 @@ def ranks(x):
 
 def pcorr_spearman(x, y, z):
     rx, ry, rz = ranks(x), ranks(y), ranks(z)
+
     def pc(a, b):
         a = a - a.mean(); b = b - b.mean()
         return float((a @ b) / np.sqrt((a @ a) * (b @ b)))
@@ -55,9 +55,10 @@ def auc(score, y):
 
 
 def cohens_d(a, b):
+    a, b = np.asarray(a, float), np.asarray(b, float)
     na, nb = len(a), len(b)
     var = ((na - 1) * np.var(a, ddof=1) + (nb - 1) * np.var(b, ddof=1)) / (na + nb - 2)
-    return float((np.mean(a) - np.mean(b)) / np.sqrt(var)) if var > 0 else 0.0
+    return float((a.mean() - b.mean()) / np.sqrt(var)) if var > 0 else 0.0
 
 
 def relax_tau(d, n=24):
@@ -80,7 +81,8 @@ def r2fit(Xtr, ytr, Xte, yte):
     return float(1 - np.sum((yte - pred) ** 2) / den) if den > 0 else 0.0
 
 
-def boot_ci(Xte, yte, B=B_BOOT, seed=0):
+def boot_ci(Xtr, ytr, Xte, yte, B=B_BOOT, seed=0):
+    """CI тестового R2 при ФИКСИРОВАННОЙ обученной модели (ресэмпл теста)."""
     rng = np.random.default_rng(seed)
     n = len(yte)
     vals = []
@@ -88,7 +90,9 @@ def boot_ci(Xte, yte, B=B_BOOT, seed=0):
         idx = rng.integers(0, n, n)
         if len(np.unique(yte[idx])) < 2:
             continue
-        vals.append(r2fit(Xte, yte, Xte[idx], yte[idx]))
+        vals.append(r2fit(Xtr, ytr, Xte[idx], yte[idx]))
+    if not vals:
+        return float("nan"), float("nan")
     return float(np.percentile(vals, 2.5)), float(np.percentile(vals, 97.5))
 
 
@@ -114,7 +118,23 @@ def loo_lda(F, y):
     return correct / len(y)
 
 
-# ---------------- episodes ----------------
+def delta_r(rs):
+    """Рост когерентности: вторая четверть траектории минус первая.
+    Робастно к адаптивной длине эпизода."""
+    vals = []
+    for r in rs:
+        rj = r["r"]
+        if rj.size >= 10:
+            q = max(1, rj.size // 4)
+            vals.append(float(rj[q:2 * q].mean() - rj[:q].mean()))
+    if not vals:
+        return float("nan"), float("nan")
+    return float(np.mean(vals)), float(np.std(vals) / np.sqrt(len(vals)))
+
+
+# --------------------------------------------------------------------------
+# episodes
+# --------------------------------------------------------------------------
 def episode(regime, rng, wseed, warm=False):
     cell = RecurrentCell(seed=wseed)
     cell.h = rng.normal(0.0, 3.0, cell.n)
@@ -148,23 +168,23 @@ def episode(regime, rng, wseed, warm=False):
         if probe.lam >= LAM_TARGET and t >= 8:
             break
     snap = probe.snapshot()
-    r = np.asarray(probe.bank.history, float)
     d = np.asarray(probe.d_series, float)
     E = float(d[:20].sum() - d[-20:].sum()) if d.size >= 40 else 0.0
-    pf = ProperTimeProbe(use_shadow=False)
-    for h in hs:
-        pf.update(h)
-    return dict(reg=regime, level=level, spec=spec, snap=snap, r=r, d=d,
-                c_fwd=probe.transient_centroid(), E=E,
-                tau=relax_tau(d), cum=cum_ns, steps=t,
-                mean_stall=float(np.mean(stalls)),
+    return dict(reg=regime, level=level, spec=spec, snap=snap,
+                r=np.asarray(probe.bank.history, float), d=d,
+                c_fwd=probe.transient_centroid(), E=E, tau=relax_tau(d),
+                cum=cum_ns, steps=t, mean_stall=float(np.mean(stalls)),
                 n_stall_big=int(np.sum(np.asarray(stalls) > 100_000)))
 
 
+# --------------------------------------------------------------------------
+# main
+# --------------------------------------------------------------------------
 def main():
     rng = np.random.default_rng(7)
+
     rows = []
-    for g, seed_off in ((0, 0), (1, 900)):
+    for seed_off in (0, 900):
         for reg in ("white1", "white3"):
             for i in range(40):
                 rows.append(episode(reg, rng, (seed_off + i) % 5))
@@ -173,8 +193,9 @@ def main():
             rows.append(episode(reg, rng, i % 5))
     warm = [episode("white1", rng, i % 5, warm=True) for i in range(60)]
 
-    W0 = [r for r in rows if r["spec"] == "white" and r["reg"] in ("white1", "white3")][:80]
-    W1 = [r for r in rows if r["spec"] == "white" and r["reg"] in ("white1", "white3")][80:]
+    # ---- T1: seed / spectral transfer ----
+    whites = [r for r in rows if r["spec"] == "white"]
+    W0, W1 = whites[:80], whites[80:]
     OU = [r for r in rows if r["spec"] == "ou"]
 
     def mats(rs):
@@ -192,61 +213,54 @@ def main():
     for arm, X0, X1, XO in (("int", Xi0, Xi1, XiO), ("ext", Xe0, Xe1, XeO)):
         obs1 = r2fit(X0[:ntr], y0[:ntr], X1, y1)
         obsO = r2fit(X0[:ntr], y0[:ntr], XO, yO)
-        lo, hi = boot_ci(X1, y1)
+        lo, hi = boot_ci(X0[:ntr], y0[:ntr], X1, y1)
         res[f"r2_{arm}_seed_transfer"] = obs1
         res[f"r2_{arm}_spectral_transfer"] = obsO
         res[f"ci_seed_transfer_{arm}"] = [lo, hi]
         res[f"perm_p_{arm}"] = perm_p(X0[:ntr], y0[:ntr], X1, y1, obs1)
-    dR = res["r2_int_seed_transfer"] - res["r2_ext_seed_transfer"]
-    res["delta_r2_seed_transfer"] = dR
+    res["delta_r2_seed_transfer"] = (res["r2_int_seed_transfer"]
+                                     - res["r2_ext_seed_transfer"])
 
-    # ---- T4 ----
+    # ---- T4: Spearman partial ----
     er = np.array([r["snap"]["erased"] for r in rows])
     sa = np.array([r["snap"]["sat"] for r in rows], float)
     st = np.array([r["snap"]["steps"] for r in rows], float)
     res["spearman_raw"] = float(np.corrcoef(ranks(er), ranks(sa))[0, 1])
     res["spearman_partial_steps"] = pcorr_spearman(er, sa, st)
 
-    # ---- T2 ----
-    cold = rows
-    y_cold = np.ones(len(cold) + len(warm)); y_cold[len(cold):] = 0
-    allr = cold + warm
+    # ---- T2: arrow candidates ----
+    allr = rows + warm
+    y_cold = np.zeros(len(allr)); y_cold[:len(rows)] = 1.0
     f_cent = -np.array([r["c_fwd"] for r in allr])
     f_E = np.array([r["E"] for r in allr])
-    f_sl = -np.array([relax_tau(r["d"]) if np.isfinite(relax_tau(r["d"])) else 1e3
-                      for r in allr])
+    taus = np.array([r["tau"] if np.isfinite(r["tau"]) else 1e3 for r in allr])
+    f_sl = -taus
     res["auc_centroid"] = auc(f_cent, y_cold)
     res["auc_energy"] = auc(f_E, y_cold)
     res["auc_slope"] = auc(f_sl, y_cold)
-    res["d_centroid"] = cohens_d([r["c_fwd"] for r in cold], [r["c_fwd"] for r in warm])
-    res["d_energy"] = cohens_d([r["E"] for r in cold], [r["E"] for r in warm])
-    tc = [r["tau"] for r in cold if np.isfinite(r["tau"])]
+    res["d_centroid"] = cohens_d([r["c_fwd"] for r in rows],
+                                 [r["c_fwd"] for r in warm])
+    res["d_energy"] = cohens_d([r["E"] for r in rows], [r["E"] for r in warm])
+    tc = [r["tau"] for r in rows if np.isfinite(r["tau"])]
     tw = [r["tau"] for r in warm if np.isfinite(r["tau"])]
-    res["tau_cold_median"] = float(np.median(tc)) if tc else np.nan
-    res["tau_warm_median"] = float(np.median(tw)) if tw else np.nan
+    res["tau_cold_median"] = float(np.median(tc)) if tc else float("nan")
+    res["tau_warm_median"] = float(np.median(tw)) if tw else float("nan")
 
-    # ---- T3 ----
-    def delta_r(rs):
-        vals = []
-        for r in rs:
-            rj = r["r"]
-            if rj.size >= 40:
-                vals.append(rj[23:39].mean() - rj[7:23].mean())
-        return float(np.mean(vals)), float(np.std(vals) / np.sqrt(max(len(vals), 1)))
-    for g in ("smooth", "strong", "gapped", "gapnoise", "drift"):
-        key = "white1" if g == "smooth" else g
-        rs = [r for r in rows if r["reg"] == key]
+    # ---- T3: gap-rise test, curves, minimal classifier ----
+    for g, k in (("smooth", "white1"), ("strong", "strong"), ("gapped", "gapped"),
+                 ("gapnoise", "gapnoise"), ("drift", "drift")):
+        rs = [r for r in rows if r["reg"] == k]
         m, se = delta_r(rs)
         res[f"delta_r_{g}"] = [m, se]
-    L = min(len(r["r"]) for r in rows if r["reg"] in ("white1", "gapped", "drift", "strong"))
+    curve_regs = (("smooth", "white1"), ("gapped", "gapped"),
+                  ("drift", "drift"), ("strong", "strong"))
+    L = min(min(len(r["r"]) for r in rows if r["reg"] == k) for _, k in curve_regs)
     res["mean_r_curves"] = {g: [float(np.mean([r["r"][i] for r in rows if r["reg"] == k]))
-                                for i in range(L)]
-                            for g, k in (("smooth", "white1"), ("gapped", "gapped"),
-                                         ("drift", "drift"), ("strong", "strong"))}
-    ttp = {g: float(np.mean([np.argmax(r["r"]) / max(len(r["r"]), 1)
-                             for r in rows if r["reg"] == k]))
-           for g, k in (("smooth", "white1"), ("gapped", "gapped"), ("drift", "drift"))}
-    res["time_to_peak_norm"] = ttp
+                                for i in range(L)] for g, k in curve_regs}
+    res["time_to_peak_norm"] = {
+        g: float(np.mean([np.argmax(r["r"]) / max(len(r["r"]), 1)
+                          for r in rows if r["reg"] == k]))
+        for g, k in (("smooth", "white1"), ("gapped", "gapped"), ("drift", "drift"))}
     cls = [r for r in rows if r["reg"] in ("white1", "gapped", "drift")]
     F2 = np.array([[np.polyfit(np.arange(max(len(r["r"]) // 2, 2)),
                                r["r"][:len(r["r"]) // 2], 1)[0], r["r"].max()]
@@ -255,6 +269,22 @@ def main():
     res["loo_lda_2feat_acc"] = loo_lda(F2, y3)
     res["corr_odom_work"] = float(np.corrcoef([r["snap"]["lam"] for r in rows],
                                               [r["level"] for r in rows])[0, 1])
+
+    # ---- plot coherence curves (optional) ----
+    try:
+        import matplotlib
+        matplotlib.use("Agg")
+        import matplotlib.pyplot as plt
+        for g, k in curve_regs:
+            rs = [r for r in rows if r["reg"] == k]
+            Lp = min(len(r["r"]) for r in rs)
+            plt.plot(np.mean([r["r"][:Lp] for r in rs], axis=0), label=g)
+        plt.legend(); plt.xlabel("step"); plt.ylabel("r")
+        plt.title("Kuramoto coherence r[t] by regime")
+        plt.savefig("coherence_curves.png", dpi=150); plt.close()
+        print("Saved: coherence_curves.png")
+    except Exception as exc:
+        print(f"[plot skipped] {exc}")
 
     verdict = dict(stage="after6_v4", **res)
     out = Path("proper_time_verdicts.json")
