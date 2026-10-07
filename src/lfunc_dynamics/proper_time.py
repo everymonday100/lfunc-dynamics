@@ -38,6 +38,7 @@ class RhythmBank:
         self.gamma = 0.0          # дрейф частот (контроль P1), 0 = без дрейфа
         self.t = 0                # внутренний счётчик шагов банка
         self.theta = rng.uniform(0, 2 * np.pi, n)
+        self.history = []                 # траектория параметра порядка r[t]
 
     def update(self, u):
         w_eff = self.w * (1.0 + self.gamma * self.t / 64.0)
@@ -45,6 +46,7 @@ class RhythmBank:
         coup = self.K * np.imag(mf * np.exp(-1j * self.theta))
         self.theta = (self.theta + w_eff + self.kap * u + coup) % (2 * np.pi)
         self.t += 1
+        self.history.append(self.coherence())
 
     def coherence(self):
         return float(np.abs(np.mean(np.exp(1j * self.theta))))
