@@ -1,0 +1,17 @@
+{
+ "stage": "after6",
+ "corr_odom_coordtime": 0.12640595535657473,
+ "corr_odom_work": 0.9156154373982867,
+ "arrow_slope_acc": 0.4875,
+ "coherence_by_regime": {
+  "smooth": 0.3499897820399658,
+  "strong": 0.29220429334941384,
+  "gapped": 0.29528581154957523
+ },
+ "gap_steps_by_regime": {
+  "smooth": 0.0,
+  "strong": 0.0,
+  "gapped": 0.0
+ },
+ "mean_erased_bits": 28.350468142679922
+}
