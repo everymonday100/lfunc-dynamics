@@ -1,17 +1,26 @@
 {
- "stage": "after6",
+ "stage": "after6_v2",
+ "T": 64,
+ "burn": 32,
+ "n_cold": 120,
+ "n_warm": 60,
  "corr_odom_coordtime": 0.12640595535657473,
  "corr_odom_work": 0.9156154373982867,
- "arrow_slope_acc": 0.4875,
+ "centroid_cold_mean": 0.5153897849462366,
+ "centroid_warm_mean": 0.5361111111111112,
+ "arrow_acc_fwd": 0.4166666666666667,
+ "arrow_acc_rev": 0.4166666666666667,
+ "warm_control_ok": 0.7,
  "coherence_by_regime": {
-  "smooth": 0.3499897820399658,
-  "strong": 0.29220429334941384,
-  "gapped": 0.29528581154957523
+  "smooth": 0.2853125601437315,
+  "strong": 0.3474346630603753,
+  "gapped": 0.40494033929077566
  },
  "gap_steps_by_regime": {
   "smooth": 0.0,
   "strong": 0.0,
-  "gapped": 0.0
+  "gapped": 8.85
  },
- "mean_erased_bits": 28.350468142679922
+ "mean_erased_bits": 28.350468142679922,
+ "overwrite_counter": 120
 }
