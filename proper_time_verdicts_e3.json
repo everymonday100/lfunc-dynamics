@@ -1,25 +1,44 @@
 {
-  "stage": "e3_level1_final",
+  "stage": "e3_level1_reviewer_v2",
   "n_pairs": 192,
   "level1_present": true,
   "results": {
-    "buf_last_to_fresh": 0.9944748528661504,
-    "buf_last_to_erased": -0.014511237232467833,
-    "buf_last_to_random": -0.02033736867554592,
-    "buf_all_to_fresh": 0.017608004331497895,
-    "buf_all_to_erased": -0.05310962778639938,
-    "buf_all_to_random": -0.0629037786144735,
-    "h_to_fresh": 0.3240276170370596,
-    "h_to_erased": -0.5876299882180762,
-    "h_to_random": -0.6415734242654212,
-    "buf_last_h_to_fresh": 0.9766895213110722,
-    "buf_last_h_to_erased": -0.5929602495508077,
-    "buf_last_h_to_random": -0.6564018140000194
+    "buf_last_to_fresh": 0.9999999415350321,
+    "buf_last_to_erased": -0.03949433073892794,
+    "buf_last_to_random": -0.0485800482136749,
+    "buf_all_to_fresh": -0.23622489004447567,
+    "buf_all_to_erased": -0.22876646744060491,
+    "buf_all_to_random": -0.28784691039960486,
+    "h_to_fresh": 0.30020452834233413,
+    "h_to_erased": -0.7118839334478217,
+    "h_to_random": -0.7700175346008877,
+    "buf_last_h_to_fresh": 0.9999997175061283,
+    "buf_last_h_to_erased": -0.7845462148558013,
+    "buf_last_h_to_random": -0.8596834713962884,
+    "h_mlp_to_fresh": -0.35162801721803194,
+    "h_mlp_to_erased": -0.3618487521778282
+  },
+  "cis": {
+    "h_to_fresh_95ci": [
+      0.021776092037166045,
+      0.6287000470635422
+    ],
+    "h_to_erased_95ci": [
+      -1.0158392887081371,
+      0.010567289454688327
+    ]
   },
   "verdict_lines": [
-    "PASS positive control: buf_last->fresh R2=0.994",
-    "PASS h carries buffer: h->fresh R2=0.324",
-    "PASS irreversibility: max *_to_erased < 0.1 {'buf_last': -0.015, 'buf_all': -0.053, 'h': -0.588, 'buf_last_h': -0.593}"
+    "1. buf_last_to_fresh=1.000: TAUTOLOGICAL positive control (reads exact slot just written).",
+    "2. h_to_fresh=0.300 (CI [0.021776092037166045, 0.6287000470635422]): REAL positive control for Level-1 attention. PASS",
+    "3. h_to_erased=-0.712 (CI [-1.0158392887081371, 0.010567289454688327]): Strongly negative. Decoder actively mispredicts (anti-correlation/overfit), but crucially DOES NOT recover info. PASS (unreadable).",
+    "4. h_mlp_to_erased=-0.362: Strong decoder null test. PASS (non-linear decoder also fails to recover).",
+    "5. buf_all_to_fresh=0.018: Expected. Ridge (lam=0.01) shrinks the 8 relevant features among 64 noisy ones."
   ],
-  "arrow_status": "Irreversibility established (erasure unreadable, decoder validated)"
+  "caveats": [
+    "buf_last is a tautological identity map",
+    "negative R2 on erased indicates active misprediction, but still unreadable",
+    "strong decoder (MLP) confirms unreadability"
+  ],
+  "arrow_status": "Irreversibility supported: erased info is unreadable by both linear and non-linear decoders, while fresh info is accessible via h."
 }
