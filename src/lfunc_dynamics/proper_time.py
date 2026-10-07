@@ -39,6 +39,8 @@ class RhythmBank:
         self.t = 0                # внутренний счётчик шагов банка
         self.theta = rng.uniform(0, 2 * np.pi, n)
         self.history = []                 # траектория параметра порядка r[t]
+        self.history2 = []                # порядок второго момента r2[t]
+        self.theta_hist = []              # траектория фаз для спектрального теста
 
     def update(self, u):
         w_eff = self.w * (1.0 + self.gamma * self.t / 64.0)
@@ -47,6 +49,8 @@ class RhythmBank:
         self.theta = (self.theta + w_eff + self.kap * u + coup) % (2 * np.pi)
         self.t += 1
         self.history.append(self.coherence())
+        self.history2.append(float(np.abs(np.mean(np.exp(2j * self.theta)))))
+        self.theta_hist.append(self.theta.copy())
 
     def coherence(self):
         return float(np.abs(np.mean(np.exp(1j * self.theta))))

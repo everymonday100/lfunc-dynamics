@@ -1,5 +1,5 @@
 {
- "stage": "after6_v5",
+ "stage": "after6_v6",
  "T_REC": 64,
  "r2_int_seed_transfer": 0.9723917003132788,
  "r2_int_spectral_transfer": 0.6406780395946424,
@@ -14,65 +14,95 @@
  ],
  "perm_p_delta": 0.004975124378109453,
  "spearman_raw": -0.3079538313402327,
- "spearman_partial_activity": null,
+ "spearman_partial_activity": -0.30795383134023263,
  "auc_centroid": 0.5844374999999999,
  "auc_energy": 0.635875,
  "auc_slope": 0.5988541666666667,
  "d_centroid": -0.33447338710845514,
- "tau_cold_median": 184.39253672645822,
- "tau_warm_median": 217.9265977395762,
  "tau_fit_r2_median": 0.0619684539353344,
  "tau_resid_lag1_median": 0.18252380080605551,
- "r2_tau_head": -0.3575042313643926,
+ "changepoint_err_steps": 5.775,
  "delta_r_smooth": [
   -0.09154769153998227,
   0.0017130335402651747,
   80
  ],
  "d_gap_smooth": 5.330237550985027,
- "delta_r2_smooth": [
-  -0.0936713605241226
- ],
+ "input_lag1_gap_smooth": -0.0820285754596151,
+ "ph_ev0_smooth": 0.3383404398148092,
  "delta_r_strong": [
   -0.08847944860641363,
   0.0027383205138572335,
   40
  ],
  "d_gap_strong": 5.305077209653819,
- "delta_r2_strong": [
-  -0.08673261080150166
- ],
+ "input_lag1_gap_strong": -0.05534012120686364,
+ "ph_ev0_strong": 0.3372890174946284,
  "delta_r_gapped": [
   -0.15446626713528377,
   0.004802016938351982,
   40
  ],
  "d_gap_gapped": 1.4513465639614713,
- "delta_r2_gapped": [
-  -0.1003768560641127
- ],
+ "input_lag1_gap_gapped": 0.0,
+ "ph_ev0_gapped": 0.46833049668174925,
  "delta_r_gapnoise": [
   -0.09097642406670815,
   0.0026784217368979414,
   40
  ],
  "d_gap_gapnoise": 2.392091676723272,
- "delta_r2_gapnoise": [
-  -0.08408755666588977
- ],
+ "input_lag1_gap_gapnoise": -0.0392901265897138,
+ "ph_ev0_gapnoise": 0.41195651921704163,
  "delta_r_drift": [
   -0.09258506419132997,
   0.0014707086011534933,
   40
  ],
  "d_gap_drift": 5.302309902633066,
- "delta_r2_drift": [
-  -0.1074652475185905
- ],
+ "input_lag1_gap_drift": -0.10503680158224211,
+ "ph_ev0_drift": 0.32890185697751245,
  "power_n_observed_effect": 2,
- "power_n_delta_005": 3,
  "vec_lda_acc": 0.80625,
  "vec_lda_perm_p": 0.004975124378109453,
  "lda_sanity_chance": 0.36666666666666664,
- "lda_sanity_separated": 0.725
+ "lda_sanity_separated": 0.725,
+ "power_sim": {
+  "n10_a0.25": [
+   0.66,
+   0.08
+  ],
+  "n10_a0.5": [
+   1.0,
+   0.62
+  ],
+  "n10_a1.0": [
+   1.0,
+   1.0
+  ],
+  "n20_a0.25": [
+   0.88,
+   0.04
+  ],
+  "n20_a0.5": [
+   1.0,
+   0.58
+  ],
+  "n20_a1.0": [
+   1.0,
+   1.0
+  ],
+  "n40_a0.25": [
+   1.0,
+   0.0
+  ],
+  "n40_a0.5": [
+   1.0,
+   0.56
+  ],
+  "n40_a1.0": [
+   1.0,
+   1.0
+  ]
+ }
 }
