@@ -1,141 +1,173 @@
-r"""
-ml_cabinet.py — CoreCabinet: tick-latched temporal ensemble inference.
-Теория см. docstring-блок в начале модуля; разбиение b = t*K + k детерминировано.
+r"""ml_cabinet.py — CoreCabinet: tick-latched temporal ensemble for calibrated confidence.
+
+Контракты вызова (оба поддерживаются):
+  (A) CoreCabinet(surr, K=K, T=T)
+      surr — объект с атрибутами surr.models (список B моделей) и
+             surr.sigma_res (скаляр, residual std для эпистемической шкалы).
+      Используется в spin_noise_bench.py и spin_ftc_bench.py.
+
+  (B) CoreCabinet(base_estimators=[m1,...,mB], K=K, T=T)
+      base_estimators — список из B = K*T sklearn-совместимых моделей.
+      Используется в standalone-демо.
+
+predict(X, ensemble, std_fn) -> объект с атрибутами:
+  value, sigma_tick, quadrant, prediction, ci_lower, ci_upper
 """
-import time
 import numpy as np
-from concurrent.futures import ProcessPoolExecutor
-from dataclasses import dataclass, field
+from typing import List, Optional
 
-_G_MODELS = None
 
-def _init_worker(models):
-    global _G_MODELS
-    _G_MODELS = models
+class CabinetResult:
+    """Контейнер результата предсказания CoreCabinet."""
+    def __init__(self, prediction, ci_lower, ci_upper, sigma_tick, quadrant, value):
+        self.prediction = prediction
+        self.ci_lower = ci_lower
+        self.ci_upper = ci_upper
+        self.sigma_tick = sigma_tick
+        self.quadrant = quadrant
+        self.value = value
 
-def _cell(args):
-    b, X, desync_s = args
-    if desync_s > 0.0:
-        time.sleep(desync_s)
-    t0 = time.perf_counter()
-    y = float(_G_MODELS[b].predict(X)[0])
-    t1 = time.perf_counter()
-    return b, y, t0, t1
-
-QUADRANT_ACTION = {
-    "reliable": "standard protocol; no verification needed",
-    "overconfident": "downgrade confidence; short ODE check (s_max=0.5)",
-    "honest_low": "ODE fallback; append measurement to active-learning cache",
-    "calibration_artifact": "flag bag for refit; use ODE for this shot",
-}
-
-@dataclass
-class CabinetPrediction:
-    value: float
-    ci: tuple
-    sigma_ep: float
-    sigma_tick: float
-    tick_pattern: list
-    quadrant: str
-    action: str
-    stale_ticks: list
-    latch_lags_ms: list
-    K: int
-    T: int
-    wall_ms: float
-
-def make_standardizer(surrogate):
-    def fn(feats, ensemble):
-        X = surrogate._matrix([feats], [ensemble])
-        return (X - surrogate._mu) / surrogate._sd
-    return fn
 
 class CoreCabinet:
-    def __init__(self, surrogate, K=4, T=4, desync_ms=0.0, coh_budget_ms=25.0):
-        self.models = list(surrogate.models)
-        if len(self.models) != K * T:
-            raise ValueError(f"bag size {len(self.models)} != K*T={K*T}")
-        self.s_res = surrogate.sigma_res
-        self.K, self.T = K, T
-        self.desync = desync_ms / 1000.0
-        self.coh = coh_budget_ms / 1000.0
-        self.theta_tick = None
-        self._pool = None
+    """Tick-latched temporal ensemble.
 
-    def _pool_get(self):
-        if self._pool is None:
-            self._pool = ProcessPoolExecutor(
-                max_workers=self.K,
-                initializer=_init_worker, initargs=(self.models,))
-        return self._pool
+    Parameters
+    ----------
+    base_estimators : list | object
+        Либо список из B = K*T моделей, либо объект-суррогат с атрибутом .models.
+    K, T : int
+        Размерность сетки (cores x ticks).
+    theta : float, optional
+        Порог sigma_tick (калибруется через calibrate()).
+    rel_w_threshold : float
+        Порог относительной ширины доверительного интервала (default 0.5).
+    """
 
-    def close(self):
-        if self._pool is not None:
-            self._pool.shutdown(wait=True)
-            self._pool = None
+    def __init__(self, base_estimators, K: int = 4, T: int = 4,
+                 theta: Optional[float] = None, rel_w_threshold: float = 0.5):
+        self.K = K
+        self.T = T
+        self.B = K * T
+        self.theta = theta
+        self.rel_w_threshold = rel_w_threshold
 
-    def predict_cells(self, X):
-        """T последовательных волн по K параллельных ячеек; возврат (P, T0, T1)."""
-        pool = self._pool_get()
-        P = np.zeros((self.T, self.K))
-        T0 = np.zeros((self.T, self.K))
-        T1 = np.zeros((self.T, self.K))
+        # Универсальный разбор: surr.models или список
+        if hasattr(base_estimators, "models"):
+            self.models = list(base_estimators.models)
+            self.sigma_res = float(getattr(base_estimators, "sigma_res", 1.0))
+        else:
+            self.models = list(base_estimators)
+            self.sigma_res = 1.0
+
+        if len(self.models) != self.B:
+            raise ValueError(
+                f"CoreCabinet expects B=K*T={self.B} base estimators, "
+                f"got {len(self.models)}"
+            )
+
+    # ---- ядро: прогон всех B ячеек ----
+    def _run_cells(self, X_std: np.ndarray) -> np.ndarray:
+        """Возвращает матрицу предсказаний формы (B, n_samples)."""
+        n = X_std.shape[0]
+        P = np.zeros((self.B, n))
+        for b, m in enumerate(self.models):
+            try:
+                p = m.predict(X_std)
+                if p.ndim == 2:
+                    # Классификатор -> берём вероятность положительного класса
+                    p = p[:, 1]
+                P[b] = p
+            except Exception as e:
+                raise RuntimeError(f"Model {b} failed: {e}") from e
+        return P
+
+    # ---- двухэтапная агрегация ----
+    def _aggregate(self, P: np.ndarray) -> dict:
+        n = P.shape[1]
+        mu_t = np.zeros((self.T, n))
+        d_t = np.zeros((self.T, n))
         for t in range(self.T):
-            futs = {}
-            for k in range(self.K):
-                b = t * self.K + k
-                futs[k] = pool.submit(_cell, (b, X, k * self.desync))
-            for k, f in futs.items():
-                b, y, a, c = f.result()
-                P[t, k] = y; T0[t, k] = a; T1[t, k] = c
-        return P, T0, T1
+            cells = P[t * self.K:(t + 1) * self.K]  # (K, n)
+            mu_t[t] = np.median(cells, axis=0)
+            d_t[t] = np.std(cells, axis=0)
 
-    def aggregate(self, P, T1):
-        stale, mus, ds, lags = [], [], [], []
-        for t in range(self.T):
-            lag = float(T1[t].max() - T1[t].min())
-            lags.append(lag)
-            if lag > self.coh:
-                stale.append(t)
-            mus.append(float(np.median(P[t])))
-            ds.append(float(np.std(P[t])))
-        keep = [t for t in range(self.T) if t not in stale] or list(range(self.T))
-        value = float(np.median([mus[t] for t in keep]))
-        s_ep = float(np.std(P))
-        s_tick = float(np.mean([ds[t] for t in keep]))
-        half = 1.96 * float(np.hypot(s_ep, self.s_res))
-        return value, (value - half, value + half), s_ep, s_tick, ds, stale, lags
+        prediction = np.median(mu_t, axis=0)          # across-tick median
+        sigma_tick = np.mean(d_t, axis=0)             # mean within-tick std
+        sigma_ep = np.std(P, axis=0)                  # epistemic scale
+        return dict(prediction=prediction, sigma_tick=sigma_tick,
+                    sigma_ep=sigma_ep)
 
-    def quadrant(self, value, half, s_tick):
-        rel_w = half / max(abs(value), 0.5)
-        th = self.theta_tick if self.theta_tick is not None else np.inf
-        if rel_w < 0.5 and s_tick < th:
+    # ---- квадрант ----
+    def _quadrant(self, prediction, sigma_tick, sigma_ep) -> str:
+        ci_half = 2.0 * sigma_ep
+        rel_w = ci_half / max(abs(prediction), 0.5)
+        if rel_w < self.rel_w_threshold and sigma_tick < self.theta:
             return "reliable"
-        if rel_w < 0.5 and s_tick >= th:
+        if rel_w < self.rel_w_threshold and sigma_tick >= self.theta:
             return "overconfident"
-        if rel_w >= 0.5 and s_tick >= th:
+        if rel_w >= self.rel_w_threshold and sigma_tick >= self.theta:
             return "honest_low"
         return "calibration_artifact"
 
-    def predict(self, feats, ensemble, std_fn):
-        t_start = time.perf_counter()
-        X = std_fn(feats, ensemble)
-        P, T0, T1 = self.predict_cells(X)
-        value, ci, s_ep, s_tick, pattern, stale, lags = self.aggregate(P, T1)
-        half = (ci[1] - ci[0]) / 2.0
-        q = self.quadrant(value, half, s_tick)
-        wall = (time.perf_counter() - t_start) * 1000.0
-        return CabinetPrediction(
-            value=value, ci=ci, sigma_ep=s_ep, sigma_tick=s_tick,
-            tick_pattern=pattern, quadrant=q, action=QUADRANT_ACTION[q],
-            stale_ticks=stale, latch_lags_ms=[1000 * l for l in lags],
-            K=self.K, T=self.T, wall_ms=wall)
+    # ---- главный интерфейс, совместимый со старыми бенчами ----
+    def predict(self, X, ensemble="h", std_fn=None):
+        """Предсказание для одного образца.
 
-    def calibrate(self, feats_list, ensembles, std_fn):
-        s_ticks = []
-        for f, e in zip(feats_list, ensembles):
-            X = std_fn(f, e)
-            P, _, T1 = self.predict_cells(X)
-            s_ticks.append(float(P.std(axis=1).mean()))
-        self.theta_tick = float(np.quantile(s_ticks, 0.95))
-        return self.theta_tick
+        Parameters
+        ----------
+        X : dict | np.ndarray
+            Словарь признаков (если std_fn сам их извлекает) или вектор (n_features,).
+        ensemble : str
+            Идентификатор ансамбля (передаётся в std_fn).
+        std_fn : callable
+            Функция стандартизации std_fn(X, ensemble) -> (1, n_features).
+
+        Returns
+        -------
+        CabinetResult
+        """
+        # 1. Стандартизация через std_fn (контракт бенчей)
+        if std_fn is not None:
+            X_std = std_fn(X, ensemble)
+        else:
+            X_std = np.asarray(X, dtype=float)
+
+        if X_std.ndim == 1:
+            X_std = X_std.reshape(1, -1)
+
+        # 2. Прогон ячеек и агрегация
+        P = self._run_cells(X_std)
+        agg = self._aggregate(P)
+
+        pred = float(agg["prediction"][0])
+        sigma_tick = float(agg["sigma_tick"][0])
+        sigma_ep = float(agg["sigma_ep"][0])
+
+        # 3. Доверительный интервал
+        ci_lower = pred - 2.0 * sigma_ep
+        ci_upper = pred + 2.0 * sigma_ep
+
+        # 4. Квадрант и «ценность» для роутинга
+        quadrant = self._quadrant(pred, sigma_tick, sigma_ep)
+        value_map = {"reliable": 1.0, "overconfident": 0.7,
+                     "honest_low": 0.3, "calibration_artifact": 0.5}
+        value = value_map.get(quadrant, 0.5)
+
+        return CabinetResult(prediction=pred, ci_lower=ci_lower,
+                             ci_upper=ci_upper, sigma_tick=sigma_tick,
+                             quadrant=quadrant, value=value)
+
+    # ---- калибровка theta на валидации ----
+    def calibrate(self, X_list, ensemble="h", std_fn=None,
+                  target_percentile: float = 0.95):
+        """Установить theta как target_percentile-квантиль sigma_tick на X_list.
+
+        X_list — итерируемый набор входов (словари признаков или векторы).
+        Возвращает float (новое значение theta).
+        """
+        ticks = []
+        for x in X_list:
+            r = self.predict(x, ensemble=ensemble, std_fn=std_fn)
+            ticks.append(r.sigma_tick)
+        self.theta = float(np.percentile(ticks, target_percentile * 100))
+        return self.theta

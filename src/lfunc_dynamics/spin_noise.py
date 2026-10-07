@@ -67,20 +67,27 @@ class SpinNoiseRig:
     def components(self, rng):
         return self.thermal(rng), self.shot(rng), self.quantum(rng)
 
-    def trace_mixed(self, rng, dc=5.0, weights=None, chopped=False):
-        """Суперпозиция с АБСОЛЮТНЫМИ амплитудами (без нормировки):
-        weights ∈ [0.4, 1.0]^3 сохраняют физическую силу каждой компоненты.
-        Возвращает доли дисперсии компонент — наблюдаемую цель декомпозиции."""
+    def trace_mixed(self, rng, dc=5.0, fracs=None, weights=None, chopped=False):
+        """Суперпозиция, покрывающая ВЕСЬ симплекс смесей.
+        fracs — целевые доли дисперсии (Dirichlet(1,1,1), если None);
+        амплитуды обратно решаются из единичных дисперсий компонент:
+        w_i = sqrt(f_i / var_i). Квантовый буст (до ~2.9x) возникает сам
+        из малой единичной дисперсии пар, а не задаётся вручную.
+        weights=... — legacy-путь v2.3, оставлен для совместимости."""
         n_th, n_sh, n_qu = self.components(rng)
-        if weights is None:
-            weights = rng.uniform(0.4, 1.0, size=3)
-        w_th, w_sh, w_qu = weights
-        noise = w_th * n_th + w_sh * n_sh + w_qu * n_qu
-        v = np.array([w_th ** 2 * n_th.var(),
-                      w_sh ** 2 * n_sh.var(),
-                      w_qu ** 2 * n_qu.var()])
-        fracs = v / v.sum()
-        return dc * (self.chop if chopped else 1.0) + noise, dict(fracs=fracs, weights=weights)
+        v_unit = np.array([n_th.var(), n_sh.var(), n_qu.var()]) + 1e-12
+        if weights is not None:
+            w = np.asarray(weights, float)
+        else:
+            if fracs is None:
+                fracs = rng.dirichlet(np.ones(3))
+            fracs = np.asarray(fracs, float)
+            fracs = fracs / fracs.sum()
+            w = np.sqrt(fracs / v_unit)
+        noise = w[0] * n_th + w[1] * n_sh + w[2] * n_qu
+        v = w ** 2 * v_unit
+        fracs_real = v / v.sum()
+        return dc * (self.chop if chopped else 1.0) + noise, dict(fracs=fracs_real, weights=w)
 
     # ---------- признаки ----------
     def _env(self, x):
