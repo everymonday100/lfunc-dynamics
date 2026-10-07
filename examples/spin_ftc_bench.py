@@ -1,9 +1,6 @@
 #!/usr/bin/env python3
-r"""spin_ftc_bench.py (v4) — STATIC vs FTC under drift + radiation effects.
-v4: modulated trace = dc*chop + noise (noise AFTER modulation, so the chopper
-actually cancels low-frequency noise; v3 modulated noise too => gain==1.0);
-single-event thermal spikes + TMR wear injected; FTC set_detect triggers
-rewrite/verify (re-read); amplitude dosimeter tracked against true wear."""
+r"""spin_ftc_bench.py (v4, clean) — STATIC vs FTC under hardware degradation.
+Correct modulation order, paired traces, SET detection, TMR dosimeter."""
 import json
 import numpy as np
 from pathlib import Path
@@ -28,21 +25,6 @@ class ProbaWrap:
     def predict(self, X):
         return self.clf.predict_proba(X)[:, 1]
 
-def algo_router(feat):
-    """Чисто алгоритмический роутер на основе физических инвариантов.
-    Служит для ablation study: сравнения с ML под дрейфом параметров."""
-    # 1. Квантовые пары: высокая cross-correlation огибающих, умеренная автокорреляция
-    if feat['pair_m'] > 0.40 and feat['ac1'] < 0.65:
-        return "quantum"
-    # 2. Дробовой шум: высокий Fano (сверхпуассоновская дисперсия), низкая автокорреляция
-    elif feat['fano'] > 1.25 and feat['ac1'] < 0.30:
-        return "shot"
-    # 3. Термальный шум: высокая автокорреляция (Ornstein-Uhlenbeck)
-    elif feat['ac1'] > 0.35:
-        return "thermal"
-    # 4. Всё остальное (пограничные случаи и смеси)
-    else:
-        return "mixed"
 
 def modulate(tr, dc_eff, period):
     """Аппаратный порядок: сигнал модулируется, шум добавляется ПОСЛЕ."""
@@ -51,9 +33,12 @@ def modulate(tr, dc_eff, period):
 
 def main():
     base = SpinNoiseRig(seed=3, tau_mag=500e-9)
-    drig = DriftingRig(base, n_total=N_STREAM)
+    drig = DriftingRig(base, n_total=N_STREAM, g_tau=0.4, g_lam=1.2, g_F=0.25,
+                       spike_rate=0.03, spike_amp=8.0, spike_width=40e-9,
+                       wear_tmr=0.3)
     rng = np.random.default_rng(11)
 
+    # ---- кабинеты обучены на статических (i=0) параметрах ----
     trF, trY = [], []
     for si, sp in enumerate(SPECIES):
         for _ in range(300):
@@ -110,11 +95,6 @@ def main():
         tr, p = drig.trace(rng, sp, i, dc=DC)
         fd = base.features(tr)
         rec = dict(i=i, true=sp, p=p)
-        # Оценка алгоритмического роутера (для ablation study)
-        algo_win = algo_router(fd)
-        algo_correct = 1 if algo_win == sp else 0
-        
-        rec = dict(i=i, true=sp, p=p, algo_correct=algo_correct) # добавили algo_correct
         for name in ("static", "ftc"):
             if name == "static":
                 std_fn = std0
@@ -143,29 +123,20 @@ def main():
                 tr_r, p_r = drig.trace(rng, sp, i, dc=DC)
                 tr_on_r = modulate(tr_r, p_r["dc_eff"], period)
                 if win == "thermal":
-                    err = demod_readout(tr_on_r, period) - p["dc_eff"]
+                    err = demod_readout(tr_on_r, period) - p_r["dc_eff"]
                 elif win == "shot":
-                    err = clip_readout(tr_on_r, period, thr) - p["dc_eff"]
+                    err = clip_readout(tr_on_r, period, thr) - p_r["dc_eff"]
                 else:
-                    err = tr_r.mean() - p["dc_eff"]
+                    err = tr_r.mean() - p_r["dc_eff"]
             rec[name] = dict(route=win, sigma=sig, flag=float(sig > theta),
                              err=err, raw=raw, set=set_flag, spike=p["spike"])
         rows.append(rec)
 
-    # ---- отчёт по окнам ----
     W = (N_STREAM - N_INIT) // N_WIN
-    print(f"{'win':>3} | {'acc ML':>6} | {'acc Algo':>8} | {'gain_th S/F':>13} | "
-          f"{'gain_sh S/F':>13} | {'flag S/F':>9}")
-    for w in range(N_WIN):
-        seg = rows[w * W:(w + 1) * W]
-        acc_ml = np.mean([r["ftc"]["route"] == r["true"] for r in seg])
-        acc_algo = np.mean([r["algo_correct"] for r in seg])
-        
-        # ... (далее ваш существующий код для gth, gsh, fl) ...
-        
-        fm = lambda x: f"{x:6.1f}" if np.isfinite(x) else "     -"
-        print(f"{w:>3} | {acc_ml:.2f}   | {acc_algo:.2f}    | {fm(g[('static','th')])}/{fm(g[('ftc','th')])}   | "
-              f"{fm(g[('static','sh')])}/{fm(g[('ftc','sh')])}   | {fl[0]:.2f}/{fl[1]:.2f}")
+    print(f"{'win':>3} | {'acc S/F':>9} | {'gain_th S/F':>13} | "
+          f"{'gain_sh S/F':>13} | {'flag S/F':>9} | {'SET tp/fp':>9} | "
+          f"{'err@spike S/F':>13}")
+    fm = lambda x: f"{x:6.1f}" if np.isfinite(x) else "     -"
     for w in range(N_WIN):
         seg = rows[w * W:(w + 1) * W]
         acc = [np.mean([r[n]["route"] == r["true"] for r in seg])

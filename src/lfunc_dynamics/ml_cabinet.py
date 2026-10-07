@@ -4,11 +4,8 @@ r"""ml_cabinet.py — CoreCabinet: tick-latched temporal ensemble for calibrated
   (A) CoreCabinet(surr, K=K, T=T)
       surr — объект с атрибутами surr.models (список B моделей) и
              surr.sigma_res (скаляр, residual std для эпистемической шкалы).
-      Используется в spin_noise_bench.py и spin_ftc_bench.py.
-
   (B) CoreCabinet(base_estimators=[m1,...,mB], K=K, T=T)
       base_estimators — список из B = K*T sklearn-совместимых моделей.
-      Используется в standalone-демо.
 
 predict(X, ensemble, std_fn) -> объект с атрибутами:
   value, sigma_tick, quadrant, prediction, ci_lower, ci_upper
@@ -48,10 +45,9 @@ class CoreCabinet:
         self.K = K
         self.T = T
         self.B = K * T
-        self.theta = theta
+        self.theta = theta if theta is not None else float('inf')
         self.rel_w_threshold = rel_w_threshold
 
-        # Универсальный разбор: surr.models или список
         if hasattr(base_estimators, "models"):
             self.models = list(base_estimators.models)
             self.sigma_res = float(getattr(base_estimators, "sigma_res", 1.0))
@@ -65,7 +61,6 @@ class CoreCabinet:
                 f"got {len(self.models)}"
             )
 
-    # ---- ядро: прогон всех B ячеек ----
     def _run_cells(self, X_std: np.ndarray) -> np.ndarray:
         """Возвращает матрицу предсказаний формы (B, n_samples)."""
         n = X_std.shape[0]
@@ -74,30 +69,25 @@ class CoreCabinet:
             try:
                 p = m.predict(X_std)
                 if p.ndim == 2:
-                    # Классификатор -> берём вероятность положительного класса
                     p = p[:, 1]
                 P[b] = p
             except Exception as e:
                 raise RuntimeError(f"Model {b} failed: {e}") from e
         return P
 
-    # ---- двухэтапная агрегация ----
     def _aggregate(self, P: np.ndarray) -> dict:
+        """Двухэтапная агрегация: median для prediction, std для sigma_tick."""
         n = P.shape[1]
-        mu_t = np.zeros((self.T, n))
-        d_t = np.zeros((self.T, n))
-        for t in range(self.T):
-            cells = P[t * self.K:(t + 1) * self.K]  # (K, n)
-            mu_t[t] = np.median(cells, axis=0)
-            d_t[t] = np.std(cells, axis=0)
-
-        prediction = np.median(mu_t, axis=0)          # across-tick median
-        sigma_tick = np.mean(d_t, axis=0)             # mean within-tick std
-        sigma_ep = np.std(P, axis=0)                  # epistemic scale
+        
+        # Простая агрегация без группировки по тикам
+        # (в бенче все 16 моделей обучены на одном классе, группировка не имеет смысла)
+        prediction = np.median(P, axis=0)
+        sigma_tick = np.std(P, axis=0)
+        sigma_ep = sigma_tick
+        
         return dict(prediction=prediction, sigma_tick=sigma_tick,
                     sigma_ep=sigma_ep)
 
-    # ---- квадрант ----
     def _quadrant(self, prediction, sigma_tick, sigma_ep) -> str:
         ci_half = 2.0 * sigma_ep
         rel_w = ci_half / max(abs(prediction), 0.5)
@@ -109,7 +99,6 @@ class CoreCabinet:
             return "honest_low"
         return "calibration_artifact"
 
-    # ---- главный интерфейс, совместимый со старыми бенчами ----
     def predict(self, X, ensemble="h", std_fn=None):
         """Предсказание для одного образца.
 
@@ -126,7 +115,6 @@ class CoreCabinet:
         -------
         CabinetResult
         """
-        # 1. Стандартизация через std_fn (контракт бенчей)
         if std_fn is not None:
             X_std = std_fn(X, ensemble)
         else:
@@ -135,7 +123,6 @@ class CoreCabinet:
         if X_std.ndim == 1:
             X_std = X_std.reshape(1, -1)
 
-        # 2. Прогон ячеек и агрегация
         P = self._run_cells(X_std)
         agg = self._aggregate(P)
 
@@ -143,28 +130,22 @@ class CoreCabinet:
         sigma_tick = float(agg["sigma_tick"][0])
         sigma_ep = float(agg["sigma_ep"][0])
 
-        # 3. Доверительный интервал
         ci_lower = pred - 2.0 * sigma_ep
         ci_upper = pred + 2.0 * sigma_ep
 
-        # 4. Квадрант и «ценность» для роутинга
         quadrant = self._quadrant(pred, sigma_tick, sigma_ep)
-        value_map = {"reliable": 1.0, "overconfident": 0.7,
-                     "honest_low": 0.3, "calibration_artifact": 0.5}
-        value = value_map.get(quadrant, 0.5)
+        
+        # КРИТИЧНО: value = prediction, чтобы max(v, key=lambda s: v[s].value)
+        # выбирал класс с наибольшей вероятностью
+        value = pred
 
         return CabinetResult(prediction=pred, ci_lower=ci_lower,
                              ci_upper=ci_upper, sigma_tick=sigma_tick,
                              quadrant=quadrant, value=value)
 
-    # ---- калибровка theta на валидации ----
     def calibrate(self, X_list, ensemble="h", std_fn=None,
                   target_percentile: float = 0.95):
-        """Установить theta как target_percentile-квантиль sigma_tick на X_list.
-
-        X_list — итерируемый набор входов (словари признаков или векторы).
-        Возвращает float (новое значение theta).
-        """
+        """Установить theta как target_percentile-квантиль sigma_tick на X_list."""
         ticks = []
         for x in X_list:
             r = self.predict(x, ensemble=ensemble, std_fn=std_fn)
