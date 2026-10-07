@@ -30,6 +30,21 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
+def _jsonable(o):
+    """Рекурсивно приводит numpy-скаляры/массивы к native-типам Python."""
+    if isinstance(o, dict):
+        return {k: _jsonable(v) for k, v in o.items()}
+    if isinstance(o, (list, tuple)):
+        return [_jsonable(v) for v in o]
+    if isinstance(o, np.ndarray):
+        return [_jsonable(v) for v in o.tolist()]
+    if isinstance(o, np.floating):
+        return float(o)
+    if isinstance(o, np.integer):
+        return int(o)
+    if isinstance(o, np.bool_):
+        return bool(o)
+    return o
 
 # ---------------------------------------------------------------------------
 # 1. Records and embeddings
@@ -318,6 +333,143 @@ class TemporalEnsemble(nn.Module):
     def temporal_context(self) -> np.ndarray:
         return self.memory.context_vector()
 
+# ---------------------------------------------------------------------------
+# 7. AFTER-2: end-to-end training on temporally structured task (dtype-safe)
+# ---------------------------------------------------------------------------
+def generate_temporal_dataset(n_samples: int = 500, in_dim: int = 32,
+                              seed: int = 42) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
+    """target = f(x) + g(cum_norm, stall); temporal vars лежат в последних 2 колонках X."""
+    rng = np.random.default_rng(seed)
+    x_base = rng.standard_normal((n_samples, 8)).astype(np.float32)
+    cumulative_ns = rng.uniform(1e6, 1e9, n_samples)
+    stall_rate = rng.beta(2, 5, n_samples)
+    cum_norm = (np.log1p(cumulative_ns) / np.log1p(1e9)).astype(np.float32)
+    stall_norm = stall_rate.astype(np.float32)
+    padding = rng.standard_normal((n_samples, in_dim - 10)).astype(np.float32)
+    X = np.concatenate([x_base, padding,
+                        cum_norm.reshape(-1, 1), stall_norm.reshape(-1, 1)],
+                       axis=1).astype(np.float32)
+    w_f = rng.standard_normal(8).astype(np.float32)
+    f_x = np.tanh(x_base @ w_f) + 0.5 * x_base[:, 0] ** 2
+    g_temporal = (0.5 * np.sin(2 * np.pi * cum_norm * 3.0)
+                  + 0.8 * stall_norm
+                  + 0.3 * np.cos(2 * np.pi * stall_norm * 5)).astype(np.float32)
+    y_temporal = (f_x + g_temporal + rng.normal(0, 0.1, n_samples).astype(np.float32))
+    y_placebo = (f_x + rng.normal(0, 0.1, n_samples).astype(np.float32))
+    return X, y_temporal.astype(np.float32), y_placebo.astype(np.float32)
+
+
+def build_e_t(cum_batch, stall_batch) -> torch.Tensor:
+    """(B,) numpy-массивы -> (B, 8) float32-тензор; dtype фиксирован явно."""
+    c = torch.as_tensor(cum_batch, dtype=torch.float32)
+    s = torch.as_tensor(stall_batch, dtype=torch.float32)
+    z = torch.zeros_like(c)
+    return torch.stack([c, z, z, z, s, z, c, c], dim=1)
+
+
+def compute_r2(y_true: np.ndarray, y_pred: np.ndarray) -> float:
+    """Коэффициент детерминации R² (native float, JSON-safe)."""
+    y_true = np.asarray(y_true, dtype=np.float64)
+    y_pred = np.asarray(y_pred, dtype=np.float64)
+    ss_res = float(np.sum((y_true - y_pred) ** 2))
+    ss_tot = float(np.sum((y_true - y_true.mean()) ** 2))
+    if ss_tot <= 0.0:
+        return 0.0
+    return 1.0 - ss_res / ss_tot
+
+
+def _h_mean(model: TemporalEnsemble, x_batch: torch.Tensor) -> torch.Tensor:
+    h_accum = None
+    for core in model.cores:
+        _, h = core(x_batch)
+        h_accum = h if h_accum is None else h_accum + h
+    return h_accum / model.n_cores
+
+
+def _batches(X, y, bs=32):
+    n = len(X) - len(X) % bs
+    for i in range(0, n, bs):
+        yield (torch.from_numpy(X[i:i + bs, :-2]).float(),
+               torch.from_numpy(y[i:i + bs]).float(),
+               X[i:i + bs, -2], X[i:i + bs, -1])
+
+
+def train_with_conditioner(model, X, y, n_epochs=50, lr=1e-3) -> List[float]:
+    opt = torch.optim.Adam(list(model.conditioner.parameters())
+                           + list(model.readout.parameters()), lr=lr)
+    losses = []
+    for _ in range(n_epochs):
+        tot, nb = 0.0, 0
+        for xb, yb, cum, stall in _batches(X, y):
+            e_t = build_e_t(cum, stall)
+            pred = model.readout(model.conditioner(_h_mean(model, xb), e_t)).squeeze(-1)
+            loss = F.mse_loss(pred, yb)
+            opt.zero_grad(); loss.backward(); opt.step()
+            tot += loss.item(); nb += 1
+        losses.append(tot / max(nb, 1))
+    return losses
+
+
+def train_baseline(model, X, y, n_epochs=50, lr=1e-3) -> List[float]:
+    opt = torch.optim.Adam(model.readout.parameters(), lr=lr)
+    losses = []
+    for _ in range(n_epochs):
+        tot, nb = 0.0, 0
+        for xb, yb, _cum, _stall in _batches(X, y):
+            pred = model.readout(_h_mean(model, xb)).squeeze(-1)
+            loss = F.mse_loss(pred, yb)
+            opt.zero_grad(); loss.backward(); opt.step()
+            tot += loss.item(); nb += 1
+        losses.append(tot / max(nb, 1))
+    return losses
+
+
+def _predict_cond(model, X) -> np.ndarray:
+    preds = []
+    for xb, _yb, cum, stall in _batches(X, np.zeros(len(X), np.float32)):
+        e_t = build_e_t(cum, stall)
+        preds.append(model.readout(model.conditioner(_h_mean(model, xb), e_t))
+                     .squeeze(-1).detach().numpy())
+    return np.concatenate(preds)
+
+
+def _predict_base(model, X) -> np.ndarray:
+    preds = []
+    for xb, _yb, _cum, _stall in _batches(X, np.zeros(len(X), np.float32)):
+        preds.append(model.readout(_h_mean(model, xb)).squeeze(-1).detach().numpy())
+    return np.concatenate(preds)
+
+def test_temporal_advantage(model: TemporalEnsemble, n_samples: int = 500,
+                            seed: int = 42) -> dict:
+    X, y_t, y_p = generate_temporal_dataset(n_samples, seed=seed)
+    n_use = len(X) - len(X) % 32
+    X, y_t, y_p = X[:n_use], y_t[:n_use], y_p[:n_use]
+
+    mk = lambda s: TemporalEnsemble(
+        lambda: BasePredictor(in_dim=30, hidden=64, out_dim=1),
+        n_cores=4, n_ticks=4, coherence_budget_ms=0.2,
+        timing_mode="sim", seed=s)
+
+    m_cond = mk(seed)
+    l_cond = train_with_conditioner(m_cond, X, y_t, n_epochs=30)
+    r2_cond_t = compute_r2(y_t, _predict_cond(m_cond, X))
+
+    m_base = mk(seed)
+    l_base = train_baseline(m_base, X, y_t, n_epochs=30)
+    r2_base_t = compute_r2(y_t, _predict_base(m_base, X))
+
+    l_plac = train_with_conditioner(m_cond, X, y_p, n_epochs=30)
+    r2_cond_p = compute_r2(y_p, _predict_cond(m_cond, X))
+
+    return {
+        "r2_conditioner_temporal": float(r2_cond_t),
+        "r2_baseline_temporal": float(r2_base_t),
+        "r2_conditioner_placebo": float(r2_cond_p),
+        "delta_r2_temporal": float(r2_cond_t - r2_base_t),
+        "losses_cond_final": float(l_cond[-1]),
+        "losses_base_final": float(l_base[-1]),
+        "losses_placebo_final": float(l_plac[-1]),
+    }
 
 # ---------------------------------------------------------------------------
 # 7. Tests for functional temporality
@@ -350,7 +502,7 @@ def test_memory_persists(model: TemporalEnsemble, n_episodes: int = 5) -> int:
 # ---------------------------------------------------------------------------
 # 8. Main: verdict dump + AFTER-1 reload test
 # ---------------------------------------------------------------------------
-def main(stage: str = "after1", n_episodes: int = 40, seed: int = 0,
+def main(stage: str = "after2", n_episodes: int = 40, seed: int = 0,
          out: Optional[str] = None):
     if out is None:
         out = f"temporal_verdicts_{stage}.json"
@@ -370,13 +522,16 @@ def main(stage: str = "after1", n_episodes: int = 40, seed: int = 0,
     diff = test_conditioning_changes_output(model)
     size = test_memory_persists(model)
 
-    # ---- AFTER-1: persist memory and verify reload ----
+    # AFTER-1: persist memory
     mem_path = f"temporal_memory_{stage}.npz"
     model.memory.save(mem_path)
     reloaded = TemporalMemory.load(mem_path)
     ctx_before = model.memory.context_vector()
     ctx_after = reloaded.context_vector()
     reload_match = bool(np.allclose(ctx_before, ctx_after, atol=1e-6))
+
+    # AFTER-2: end-to-end training on temporal task
+    temporal_results = test_temporal_advantage(model, n_samples=500, seed=seed+100)
 
     verdict = dict(
         stage=stage, seed=seed, K=model.n_cores, T=model.n_ticks,
@@ -389,10 +544,18 @@ def main(stage: str = "after1", n_episodes: int = 40, seed: int = 0,
         memory_path=mem_path, reload_match=reload_match,
         context_before=ctx_before.tolist(),
         context_after=ctx_after.tolist(),
+        # AFTER-2 metrics
+        r2_conditioner_temporal=temporal_results["r2_conditioner_temporal"],
+        r2_baseline_temporal=temporal_results["r2_baseline_temporal"],
+        r2_conditioner_placebo=temporal_results["r2_conditioner_placebo"],
+        delta_r2_temporal=temporal_results["delta_r2_temporal"],
+        losses_cond_final=temporal_results["losses_cond_final"],
+        losses_base_final=temporal_results["losses_base_final"],
+        losses_placebo_final=temporal_results["losses_placebo_final"],
         s_ticks=s_ticks,
     )
     with open(out, "w") as fh:
-        json.dump(verdict, fh, indent=1)
+        json.dump(_jsonable(verdict), fh, indent=1)
     print(json.dumps({k: v for k, v in verdict.items()
                       if k not in ("s_ticks",)}, indent=1))
     print(f"Saved: {out}")
