@@ -3,7 +3,7 @@ Duration = odometer/event-clock/rhythm-phase pattern (label-free);
 arrow = contraction-erasure counter; rhythm = oscillator bank driven by work.
 Coordinate time is never a feature (debug only)."""
 import numpy as np
-
+from lfunc_dynamics.temporal_layer import TemporalMemory
 
 class RecurrentCell:
     def __init__(self, n=32, seed=0):
@@ -73,6 +73,9 @@ class ProperTimeProbe:
     def note_overwrite(self, k=1):
         self.overwrites += k
 
+    def set_coupling(self, K: float):      # <- внутри класса, отступ 4
+        self.bank.K = K
+
     def update(self, h, h_shadow=None):
         if self.prev_h is None:
             self.prev_h = h.copy()
@@ -114,3 +117,83 @@ class ProperTimeProbe:
         k = max(2, int(top_frac * d.size))
         idx = np.argsort(d)[-k:]
         return float(np.mean(idx) / (d.size - 1))
+
+class TemporalMemory:
+    """Кольцевой буфер эмбеддингов; перезапись слота = стирание (стрела)."""
+    def __init__(self, capacity: int = 64, dim: int = 8):
+        self.capacity, self.dim = capacity, dim
+        self._buf = np.zeros((capacity, dim), dtype=np.float32)
+        self._ptr = 0
+        self._size = 0
+
+    def push(self, vec: np.ndarray) -> None:
+        self._buf[self._ptr] = vec
+        self._ptr = (self._ptr + 1) % self.capacity
+        self._size = min(self._size + 1, self.capacity)
+
+    def recent(self, n: int = 8) -> np.ndarray:
+        if self._size == 0:
+            return np.zeros((0, self.dim), dtype=np.float32)
+        n = min(n, self._size)
+        idx = [(self._ptr - 1 - i) % self.capacity for i in range(n)]
+        idx.reverse()
+        return self._buf[idx]
+
+    def context_vector(self) -> np.ndarray:
+        r = self.recent(8)
+        return r.mean(axis=0) if r.shape[0] else np.zeros(self.dim, dtype=np.float32)
+
+    def __len__(self) -> int:
+        return self._size
+
+class SurpriseMemoryV2:
+    """Content-triggered memory (corrected). 
+    Pushes only high-surprise states. Erasure happens ONLY when buffer 
+    overflows, removing the most redundant element. This decouples 
+    erasure count from trajectory length (Lambda)."""
+    def __init__(self, capacity: int = 8, dim: int = 8, state_dim: int = 32,
+                 push_quantile: float = 0.7, seed: int = 0):
+        rng = np.random.default_rng(seed)
+        self.capacity, self.dim = capacity, dim
+        self.state_dim = state_dim
+        self.push_quantile = push_quantile
+        self.P = (rng.standard_normal((dim, state_dim)) / np.sqrt(dim)).astype(np.float32)
+        self._buf = [] 
+        self.erased = 0
+        self.events = [] 
+        self._push_hist = [] 
+
+    def _surprise_of(self, h, buf_slots):
+        if not buf_slots: return np.array([np.inf])
+        preds = np.array([s @ self.P for s in buf_slots]) 
+        return ((h[None, :] - preds) ** 2).sum(1) 
+
+    def push_step(self, h, vec):
+        h = np.asarray(h, float)
+        vec = np.asarray(vec, dtype=np.float32)
+        ev = 0
+        
+        s_curr = self._surprise_of(h, self._buf)
+        min_s = float(np.min(s_curr)) if len(s_curr) > 0 else np.inf
+        
+        if self._push_hist:
+            thr = float(np.quantile(self._push_hist, self.push_quantile))
+        else:
+            thr = -1.0 
+
+        if min_s > thr: 
+            self._push_hist.append(min_s)
+            self._buf.append(vec)
+            
+            if len(self._buf) > self.capacity:
+                s_buf = self._surprise_of(h, self._buf)
+                idx_to_remove = int(np.argmin(s_buf))
+                self._buf.pop(idx_to_remove)
+                self.erased += 1
+                ev = 1
+                
+        self.events.append(ev)
+        return self.erased
+        
+    def __len__(self) -> int:
+        return len(self._buf)
