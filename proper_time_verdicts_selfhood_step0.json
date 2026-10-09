@@ -1,0 +1,148 @@
+{
+  "stage": "selfhood_step0_baselines",
+  "A_warm_a3": {
+    "A3_a0.0_cold_full": [
+      0.0016812649677166135,
+      [
+        0.0013191635274474398,
+        0.002059818583049149
+      ]
+    ],
+    "A3_a0.0_cold_first": [
+      0.0035641939847034522,
+      [
+        0.002639470927584811,
+        0.004530440384352365
+      ]
+    ],
+    "A3_a0.0_cold_second": [
+      -7.910605771274247e-05,
+      [
+        -0.0006019748778909863,
+        0.0004448650033821524
+      ]
+    ],
+    "A3_a0.0_warm_full": [
+      3.370852382232852e-05,
+      [
+        -0.0002757621072064453,
+        0.00035024885681257244
+      ]
+    ],
+    "A3_a0.0_warm_first": [
+      0.00011535240560502983,
+      [
+        -0.0005027162737053383,
+        0.0007497135574856716
+      ]
+    ],
+    "A3_a0.0_warm_second": [
+      -0.00023090799424837406,
+      [
+        -0.0007461824993064004,
+        0.00026299324230456253
+      ]
+    ],
+    "A3_a0.7_cold_full": [
+      0.08079693237049469,
+      [
+        0.07411052799451819,
+        0.0878285063509289
+      ]
+    ],
+    "A3_a0.7_cold_first": [
+      0.1442807559806859,
+      [
+        0.13286862091599957,
+        0.1561310504881256
+      ]
+    ],
+    "A3_a0.7_cold_second": [
+      -2.4634119536555726e-06,
+      [
+        -0.0005037865468306971,
+        0.0005416606699206144
+      ]
+    ],
+    "A3_a0.7_warm_full": [
+      2.6522282387556258e-05,
+      [
+        -0.00032541092176372296,
+        0.0004192205087563204
+      ]
+    ],
+    "A3_a0.7_warm_first": [
+      1.4655700104234456e-05,
+      [
+        -0.0007058325175227452,
+        0.0006585915591194531
+      ]
+    ],
+    "A3_a0.7_warm_second": [
+      -9.435568515034111e-05,
+      [
+        -0.0006204119183502273,
+        0.00045053216209959976
+      ]
+    ],
+    "stationary_t_breaking": false,
+    "stationary_t_breaking_ci": [
+      -0.00032541092176372296,
+      0.0004192205087563204
+    ]
+  },
+  "B_baselines": {
+    "ch2": 0.07538194954395294,
+    "ch2_ci": [
+      0.07509366466386154,
+      0.07571288947414435
+    ],
+    "ch2_threshold_human": 0.95,
+    "ch2_below_threshold": true,
+    "pci": 1.484033203129282,
+    "pci_ci": [
+      1.4765432739300417,
+      1.491287841801178
+    ],
+    "pci_at_differentiation_ceiling": true,
+    "causal_density": 0.02314897054202771,
+    "cd_ci": null,
+    "cd_near_zero": true,
+    "baselines_negative": true,
+    "baseline_signature": "pure differentiation, no integration (pci~1, ch2~0, cd~0)"
+  },
+  "C_toy_sigma": {
+    "strong": {
+      "alpha": 0.6,
+      "beta": 0.3,
+      "sigma_theory": 0.2079441541679836,
+      "sigma_eval": 0.20009762042411242,
+      "relative_error": 0.03773385106798806,
+      "validation_passed": true
+    },
+    "moderate": {
+      "alpha": 0.45,
+      "beta": 0.35,
+      "sigma_theory": 0.025131442828090624,
+      "sigma_eval": 0.023972516465137924,
+      "relative_error": 0.04611459719340896,
+      "validation_passed": true
+    },
+    "zero": {
+      "alpha": 0.4,
+      "beta": 0.4,
+      "sigma_theory": 0.0,
+      "sigma_eval": 0.00010558891369248776,
+      "relative_error": 105588913.69248776,
+      "validation_passed": false
+    },
+    "estimator_valid": false
+  },
+  "overall_status": {
+    "A_stationary_t_breaking_resolved": false,
+    "B_baselines_established": true,
+    "C_sigma_estimator_validated": false,
+    "step0_complete": false,
+    "next_step_decision": "Skip T1; go to T2 (temporal self-model) or T4 (closed loop)"
+  }
+}
